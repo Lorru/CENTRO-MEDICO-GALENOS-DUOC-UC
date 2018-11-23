@@ -1,0 +1,33 @@
+﻿<controls:MetroWindow x:Class="medical_center_galenos_desktop.view.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:medical_center_galenos_desktop.view"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="Login" Height="350" Width="400" WindowStartupLocation="CenterScreen" Background="darkslategray">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <Label FontSize="25px" Content="Centro Médico Galenos" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="372" Foreground="#FFFFFF"/>
+        <Label FontSize="12px" Content="Correo" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Width="272" Foreground="DarkGray"/>
+        <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Height="23" Margin="10,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="372"/>
+        <Label FontSize="12px" Content="Clave" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="272" Foreground="DarkGray"/>
+        <PasswordBox x:Name="passwordBoxPassword" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Width="372" Height="23"/>
+        <Button Foreground="#FFFFFF" Background="#006cff" x:Name="btnEnter" Content="Ingresar" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="372" Click="btnEnter_Click"/>
+        <Button Foreground="#FFFFFF" Background="#ff3502" x:Name="btnExit"  Content="Salir" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Width="372" Click="btnExit_Click"/>
+
+    </Grid>
+</controls:MetroWindow>

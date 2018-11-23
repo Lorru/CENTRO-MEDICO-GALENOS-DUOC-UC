@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{699FB613-500A-49E2-92F0-A099F2383C40}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>medical_center_galenos_desktop</RootNamespace>
+    <AssemblyName>medical-center-galenos-desktop</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net, Version=0.1.5073.29922, Culture=neutral, PublicKeyToken=6bcd409ee6bc9292, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt-Official.0.1.109\lib\BCrypt.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.18.3.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="model\BILL.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\BRANCH_OFFICE.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\BRANCH_OFFICE_CATEGORY.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\BRANCH_OFFICE_SPECIALTY.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\CATEGORY.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\EVENT_LOG.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\EXCEPTION_LOG.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\FORECAST.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\GENDER.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\MedicalCenterGalenosEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicalCenterGalenosEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\MedicalCenterGalenosEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\MedicalCenterGalenosEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicalCenterGalenosEDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="model\PATIENT.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\PAYMENT_TYPE.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\PERSONAL.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\PROFILE.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\PROFILE_ROLE.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\ROLE.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\SCHEDULE.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\SPECIALIST.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\SPECIALTY.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\STATE_MEDICAL_TIME.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\USER.cs">
+      <DependentUpon>MedicalCenterGalenosEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="service\Bill.cs" />
+    <Compile Include="service\BranchOffice.cs" />
+    <Compile Include="service\Category.cs" />
+    <Compile Include="service\Forecast.cs" />
+    <Compile Include="service\Gender.cs" />
+    <Compile Include="service\Patient.cs" />
+    <Compile Include="service\PaymentType.cs" />
+    <Compile Include="service\Personal.cs" />
+    <Compile Include="service\Profile.cs" />
+    <Compile Include="service\Role.cs" />
+    <Compile Include="service\Schedule.cs" />
+    <Compile Include="service\Specialist.cs" />
+    <Compile Include="service\Specialty.cs" />
+    <Compile Include="service\StateMedicalTime.cs" />
+    <Compile Include="service\User.cs" />
+    <Compile Include="view\Bills.xaml.cs">
+      <DependentUpon>Bills.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\BranchOffices.xaml.cs">
+      <DependentUpon>BranchOffices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Categorys.xaml.cs">
+      <DependentUpon>Categorys.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Forecasts.xaml.cs">
+      <DependentUpon>Forecasts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Genders.xaml.cs">
+      <DependentUpon>Genders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="view\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Patients.xaml.cs">
+      <DependentUpon>Patients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\PaymentsType.xaml.cs">
+      <DependentUpon>PaymentsType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Personals.xaml.cs">
+      <DependentUpon>Personals.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Profiles.xaml.cs">
+      <DependentUpon>Profiles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Roles.xaml.cs">
+      <DependentUpon>Roles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Schedules.xaml.cs">
+      <DependentUpon>Schedules.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Specialists.xaml.cs">
+      <DependentUpon>Specialists.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Specialtys.xaml.cs">
+      <DependentUpon>Specialtys.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\StatesMedicalTime.xaml.cs">
+      <DependentUpon>StatesMedicalTime.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\IconsNonShared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\Bills.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\BranchOffices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Categorys.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Forecasts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Genders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Patients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\PaymentsType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Personals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Profiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Roles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Schedules.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Specialists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Specialtys.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\StatesMedicalTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="model\MedicalCenterGalenosEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MedicalCenterGalenosEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="model\MedicalCenterGalenosEDM.edmx.diagram">
+      <DependentUpon>MedicalCenterGalenosEDM.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+    <Resource Include="favicon.ico" />
+    <Resource Include="LICENSE.txt" />
+    <Content Include="model\MedicalCenterGalenosEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MedicalCenterGalenosEDM.Context.cs</LastGenOutput>
+      <DependentUpon>MedicalCenterGalenosEDM.edmx</DependentUpon>
+    </Content>
+    <Content Include="model\MedicalCenterGalenosEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MedicalCenterGalenosEDM.edmx</DependentUpon>
+      <LastGenOutput>MedicalCenterGalenosEDM.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

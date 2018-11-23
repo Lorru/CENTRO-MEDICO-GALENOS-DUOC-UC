@@ -1,0 +1,88 @@
+<ngb-accordion activeIds="ngb-panel-0">
+  <ngb-panel title="Eventos">
+        <ng-template ngbPanelContent>
+              <div class="row">
+                    <div class="col-md-12">
+                          <div class="table-responsive">
+                                <table class="table table-hover">
+                                      <thead>
+                                            <tr>
+                                                  <th *ngIf="loadingEventLog == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                                                  <th>Usuario</th>
+                                                  <th>Descripción</th>
+                                                  <th>Fecha</th>
+                                                  <th>Codigo de Status</th>
+                                            </tr>
+                                      </thead>
+                                      <tbody>
+                                            <ng-container *ngIf="loadingEventLog == false && eventsLog.length > 0">
+                                                  <tr *ngFor="let eventLog of eventsLog">
+                                                        <td>{{ returnEventLogUser(eventLog.userId) }}</td>
+                                                        <td>{{ eventLog.eventLogDescription }}</td>
+                                                        <td>{{ transformEventLogDate(eventLog.eventLogDate) }}</td>
+                                                        <td>{{ eventLog.eventLogStatusCode }}</td>
+                                                  </tr>
+                                            </ng-container>
+                                            <ng-container *ngIf="loadingEventLog == false && eventsLog.length == 0">
+                                                  <tr>
+                                                        <td colspan="7" style="text-align: center;">
+                                                              <p>No hay resultados para esta solicitud.</p>
+                                                        </td>
+                                                  </tr>
+                                            </ng-container>
+                                      </tbody>
+                                </table>
+                          </div>
+                          <ng-container *ngIf="eventsLog.length > 0">
+                                <ngb-pagination [collectionSize]="countRowsEventLog" [pageSize]="countRowsByPageEventLog" [(page)]="currentPageEventLog" (pageChange)="pageChangeEventLog($event)"></ngb-pagination>
+                          </ng-container>
+                    </div>
+              </div>
+        </ng-template>
+  </ngb-panel>
+  <ngb-panel title="Excepciones">
+        <ng-template ngbPanelContent>
+              <div class="row">
+                    <div class="col-md-12">
+                          <div class="table-responsive">
+                              <table class="table table-hover">
+                                    <thead>
+                                          <tr>
+                                                <th *ngIf="loadingExceptionLog == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                                                <th>Usuario</th>
+                                                <th>Descripción</th>
+                                                <th>Fecha</th>
+                                                <th>Controlador</th>
+                                                <th>Metodo</th>
+                                                <th>Codigo de Status</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          <ng-container *ngIf="loadingExceptionLog == false && exceptionsLog.length > 0">
+                                                <tr *ngFor="let exceptionLog of exceptionsLog">
+                                                      <td>{{ returnExceptionLogUser(exceptionLog.userId) }}</td>
+                                                      <td>{{ exceptionLog.exceptionLogDescription }}</td>
+                                                      <td>{{ transformExceptionLogDate(exceptionLog.exceptionLogDate) }}</td>
+                                                      <td>{{ exceptionLog.exceptionLogController }}</td>
+                                                      <td>{{ exceptionLog.exceptionLogMethod }}</td>
+                                                      <td>{{ exceptionLog.exceptionLogStatusCode }}</td>
+                                                </tr>
+                                          </ng-container>
+                                          <ng-container *ngIf="loadingExceptionLog == false && exceptionsLog.length == 0">
+                                                <tr>
+                                                      <td colspan="7" style="text-align: center;">
+                                                            <p>No hay resultados para esta solicitud.</p>
+                                                      </td>
+                                                </tr>
+                                          </ng-container>
+                                    </tbody>
+                              </table>
+                        </div>
+                        <ng-container *ngIf="exceptionsLog.length > 0">
+                              <ngb-pagination [collectionSize]="countRowsExceptionLog" [pageSize]="countRowsByPageExceptionLog" [(page)]="currentPageExceptionLog" (pageChange)="pageChangeExceptionLog($event)"></ngb-pagination>
+                        </ng-container>
+                    </div>
+              </div>
+        </ng-template>
+  </ngb-panel>
+</ngb-accordion>

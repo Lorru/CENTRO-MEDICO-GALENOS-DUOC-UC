@@ -1,0 +1,53 @@
+<div id="page-container" class="page-container page-sidebar-fixed page-header-fixed">
+      <div id="header" class="header navbar-default" style="background: darkcyan;">
+            <div class="navbar-header">
+                  <a routerLink="/menu/home" class="navbar-brand"> <b>Centro Médico</b> Galenos</a>
+                  <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                  </button>
+            </div>
+            <ul class="navbar-nav navbar-right">
+                  <li class="dropdown navbar-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                              <span class="d-none d-md-inline">{{ userName }}</span> <b class="caret"></b>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                              <ng-container *ngFor="let profileRole of profileRoles">
+                                    <a *ngIf="profileRole.roleId == 1" routerLinkActive="active" routerLink="/menu/my-medical-record-profile" class="dropdown-item">{{ titleProfile() }}</a>
+                                    <a *ngIf="profileRole.roleId == 2" routerLinkActive="active" routerLink="/menu/my-medical-time" class="dropdown-item">Mis Horas Médicas</a>
+                              </ng-container>
+                              <div class="dropdown-divider"></div>
+                              <a (click)="logout()" style="color: #000;" class="dropdown-item">Salir</a>
+                        </div>
+                  </li>
+            </ul>
+      </div>
+      <div id="sidebar" class="sidebar">
+            <div data-scrollbar="true" data-height="100%">
+                  <ul class="nav">
+                        <li class="nav-header">MENU DE NAVEGACIÓN</li>
+                        <ng-container *ngFor="let profileRole of profileRoles">
+                              <li *ngIf="profileRole.roleId == 3" routerLinkActive="active"><a routerLink="/menu/home"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+                              <li *ngIf="profileRole.roleId == 4" routerLinkActive="active"><a routerLink="/menu/register-medical-time"><i class="fa fa-calendar-check"></i> <span>Registrar Hora Médica</span></a></li>
+                              <li *ngIf="profileRole.roleId == 5" routerLinkActive="active"><a routerLink="/menu/register-patients"><i class="fa fa-user-plus"></i> <span>Registro de Pacientes</span></a></li>
+                              <li *ngIf="profileRole.roleId == 6" routerLinkActive="active"><a routerLink="/menu/my-patients"><i class="fa fa-users"></i> <span>Mis Pacientes</span></a></li>
+                              <li *ngIf="profileRole.roleId == 7" routerLinkActive="active"><a routerLink="/menu/specialists"><i class="fa fa-user-md"></i> <span>Especialistas</span></a></li>
+                              <li *ngIf="profileRole.roleId == 8" routerLinkActive="active"><a routerLink="/menu/personals"><i class="fa fa-users"></i> <span>Personal</span></a></li>
+                              <li *ngIf="profileRole.roleId == 9" routerLinkActive="active"><a routerLink="/menu/users"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
+                              <li *ngIf="profileRole.roleId == 10" routerLinkActive="active"><a routerLink="/menu/medical-hours-payment"><i class="fa fa-credit-card"></i> <span>Pago de Hora Médica</span></a></li>
+                              <li *ngIf="profileRole.roleId == 11" routerLinkActive="active"><a routerLink="/menu/bills"><i class="fa fa-money-bill-alt"></i> <span>Facturas</span></a></li>
+                              <li *ngIf="profileRole.roleId == 12" routerLinkActive="active"><a routerLink="/menu/reports"><i class="fa fa-chart-bar"></i> <span>Reportes</span></a></li>
+                              <li *ngIf="profileRole.roleId == 13" routerLinkActive="active"><a routerLink="/menu/logs"><i class="fa fa-history"></i> <span>Logs</span></a></li>
+                        </ng-container>
+                        <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+                  </ul>
+            </div>
+      </div>
+      <div class="sidebar-bg"></div>
+      <div id="content" class="content">
+            <router-outlet></router-outlet>
+      </div>
+      <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+</div>

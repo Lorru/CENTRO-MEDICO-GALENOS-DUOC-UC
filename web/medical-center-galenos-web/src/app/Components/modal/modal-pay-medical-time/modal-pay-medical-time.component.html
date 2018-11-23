@@ -1,0 +1,73 @@
+<div class="modal-header" style="background: darkcyan;">
+      <h4 class="modal-title">Paga Hora Médica</h4>
+      <button type="button" class="close" aria-hidden="true" (click)="dismiss()">×</button>
+</div>
+<div class="modal-body" style="background: darkslategray;">
+      <div class="row">
+            <div class="col-md-6">
+                  <div class="form-group">
+                        <label>Previsión <span class="text-danger">*</span></label>
+                        <ng-container *ngIf="loadingForecast == true">
+                              <i class="fas fa-circle-notch fa-spin"></i>
+                        </ng-container>
+                        <select class="form-control" [(ngModel)]="model.forecastId" (change)="returnForecastAmount(model.forecastId); returnBillSalary();">
+                              <option *ngFor="let forecast of forecasts" value="{{ forecast.forecastId }}">{{ forecast.forecastDescription }}</option>
+                        </select>
+                  </div>
+            </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                        <label>Medio de Pago <span class="text-danger">*</span></label>
+                        <ng-container *ngIf="loadingPaymentType == true">
+                              <i class="fas fa-circle-notch fa-spin"></i>
+                        </ng-container>
+                        <select class="form-control" [(ngModel)]="model.paymentTypeId" (change)="returnPaymentTypeAmount(model.paymentTypeId); returnBillSalary();">
+                              <option *ngFor="let paymentType of paymentTypes" value="{{ paymentType.paymentTypeId }}">{{ paymentType.paymentTypeDescription }}</option>
+                        </select>
+                  </div>
+            </div>
+      </div>
+      <div class="row">
+            <div class="col-md-12" style="background-color: darkcyan;">
+                  <table class="table table-hover">
+                        <tbody>
+                              <tr class="bg-primary">
+                                    <td colspan="2" style="text-align: center;"><b>Información del Pago de Hora Médica</b></td>
+                              </tr>
+                              <tr>
+                                    <td><b>Información</b></td>
+                                    <td><b>Valor</b></td>
+                              </tr>
+                              <tr>
+                                    <td>Especialidad ({{ model.specialtyDescription }}) : </td>
+                                    <td>${{ model.specialtyAmount }}</td>
+                              </tr>
+                              <tr>
+                                    <td>Previsión : </td>
+                                    <td>${{ model.forecastAmount }}</td>
+                              </tr>
+                              <tr>
+                                    <td>Medio de Pago : </td>
+                                    <td>${{ model.paymentTypeAmount }}</td>
+                              </tr>
+                              <tr>
+                                    <td>Descuento Centro Médico : </td>
+                                    <td>%{{ discountMedicalCenter }}</td>
+                              </tr>
+                              <tr>
+                                    <td>Total a Pagar : </td>
+                                    <td>${{ model.billSalary }}</td>
+                              </tr>
+                        </tbody>
+                  </table>
+            </div>
+      </div>
+</div>
+<div class="modal-footer" style="background: darkcyan;">
+      <button class="btn btn-primary" [disabled]="loadingBillCreate" (click)="payMedicalTime()">Pagar
+            <ng-container *ngIf="loadingBillCreate == true">
+                  <i class="fas fa-circle-notch fa-spin"></i>
+            </ng-container>
+      </button>
+      <a href="javascript:;" class="btn btn-white" (click)="dismiss()">Salir</a>
+</div>

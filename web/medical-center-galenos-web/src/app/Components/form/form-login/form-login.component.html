@@ -1,0 +1,13 @@
+<div class="form-group m-b-15">
+  <input type="text" class="form-control form-control-lg" [(ngModel)]="model.patientSpecialistEmail" placeholder="Correo..."/>
+</div>
+<div class="form-group m-b-15">
+  <input type="password" class="form-control form-control-lg" [(ngModel)]="model.userPassword" placeholder="Clave..."/>
+</div>
+<div class="login-buttons">
+  <button class="btn btn-primary btn-block btn-lg" [disabled]="loadingLogin" (click)="login()" >Ingresar
+        <ng-container *ngIf="loadingLogin == true">
+              <i class="fas fa-circle-notch fa-spin"></i>
+        </ng-container>
+  </button>
+</div>

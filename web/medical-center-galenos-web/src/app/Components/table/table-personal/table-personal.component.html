@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-4">
+        <button class="btn btn-primary" (click)="createPersonal()">Agregar</button>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <div class="table-responsive">
+          <table class="table table-hover">
+                <thead>
+                      <tr>
+                          <th *ngIf="loadingPersonals == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                          <th>Rut del Personal</th>
+                          <th>Nombre del Personal</th>
+                          <th>Genero</th>
+                          <th>Fecha de Nacimiento</th>
+                          <th>Categoria</th>
+                          <th>Centro médico</th>
+                      </tr>
+                </thead>
+                <tbody>
+                      <ng-container *ngIf="loadingPersonals == false && personals.length > 0">
+                            <tr *ngFor="let personal of personals">
+                                <td>{{ personal.personalRun }}</td>
+                                <td>{{ personal.personalFullName }}</td>
+                                <td>{{ personal.genderId.genderDescription }}</td>
+                                <td>{{ transformPersonalBirthDate(personal.personalBirthDate) }}</td>
+                                <td>{{ personal.categoryId.categoryDescription }}</td>
+                                <td>{{ personal.branchOfficeId.branchOfficeName }}</td>
+                            </tr>
+                      </ng-container>
+                      <ng-container *ngIf="loadingPersonals == false && personals.length == 0">
+                            <tr>
+                                  <td colspan="7" style="text-align: center;">
+                                      <p>No hay resultados para esta solicitud.</p>
+                                  </td>
+                            </tr>
+                      </ng-container>
+                </tbody>
+          </table>
+    </div>
+    <ng-container *ngIf="personals.length > 0">
+          <ngb-pagination [collectionSize]="countRows" [pageSize]="countRowsByPage" [(page)]="currentPage" (pageChange)="pageChange($event)"></ngb-pagination>
+    </ng-container>
+</div>
+</div>

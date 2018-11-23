@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="close" aria-hidden="true" (click)="dismiss()">×</button>
+</div>
+<div class="modal-body">
+    <div class="alert alert-danger m-b-0" *ngIf="userStatus == 1">
+        <h5><i class="fa fa-clock"></i> {{ title }}</h5>
+        <h4>{{ message }}</h4>
+    </div>
+    <div class="alert alert-success m-b-0" style="background: darkcyan;" *ngIf="userStatus == 0">
+        <h5><i class="fa fa-clock"></i> {{ title }}</h5>
+        <h4>{{ message }}</h4>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" [disabled]="loadingUserStatus" (click)="enableDisableUser()">{{ titleButton }}
+        <ng-container *ngIf="loadingUserStatus == true">
+              <i class="fas fa-circle-notch fa-spin"></i>
+        </ng-container>
+    </button>
+    <a href="javascript:;" class="btn btn-white" (click)="dismiss()">Salir</a>
+</div>

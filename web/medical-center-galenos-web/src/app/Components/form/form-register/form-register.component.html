@@ -1,0 +1,59 @@
+<label class="control-label">Nombre Completo <span class="text-danger">*</span></label>
+<div class="row row-space-10">
+      <div class="col-md-6 m-b-15">
+            <input type="text" class="form-control" placeholder="Primer Nombre..." [(ngModel)]="model.patientFirstName"/>
+      </div>
+      <div class="col-md-6 m-b-15">
+            <input type="text" class="form-control" placeholder="Segundo Nombre..." [(ngModel)]="model.patientSecondName"/>
+      </div>
+</div>
+<div class="row row-space-10">
+      <div class="col-md-6 m-b-15">
+            <input type="text" class="form-control" placeholder="Primer Apellido..." [(ngModel)]="model.patientSurName"/>
+      </div>
+      <div class="col-md-6 m-b-15">
+            <input type="text" class="form-control" placeholder="Segundo Apellido..." [(ngModel)]="model.patientSecondSurName"/>
+      </div>
+</div>
+<label class="control-label">Rut <span class="text-danger">*</span></label>
+<div class="row m-b-15">
+      <div class="col-md-12">
+            <input type="text" class="form-control" placeholder="Rut..." [(ngModel)]="model.patientRun"/>
+      </div>
+</div>
+<label class="control-label">Fecha de Nacimiento <span class="text-danger">*</span></label>
+<div class="row m-b-15">
+      <div class="col-md-12">
+            <input type="date" class="form-control" [(ngModel)]="model.patientBirthDate">
+      </div>
+</div>
+<label class="control-label">Genero <span class="text-danger">*</span></label>
+<ng-container *ngIf="loadingGender == true">
+      <i class="fas fa-circle-notch fa-spin"></i>
+</ng-container>
+<div class="row m-b-15">
+      <div class="col-md-12">
+            <select class="form-control" [(ngModel)]="model.genderId">
+                  <option *ngFor="let gender of genders" value="{{ gender.genderId }}">{{ gender.genderDescription }}</option>
+            </select>
+      </div>
+</div>
+<label class="control-label">Correo <span class="text-danger">*</span></label>
+<div class="row m-b-15">
+      <div class="col-md-12">
+            <input type="text" class="form-control" placeholder="Correo..." [(ngModel)]="model.patientEmail"/>
+      </div>
+</div>
+<label class="control-label">Clave <span class="text-danger">*</span></label>
+<div class="row m-b-15">
+      <div class="col-md-12">
+            <input type="password" class="form-control" placeholder="Clave..." [(ngModel)]="model.userPassword"/>
+      </div>
+</div>
+<div class="register-buttons" *ngIf="genders.length > 0">
+      <button class="btn btn-primary btn-block btn-lg" [disabled]="loadingCreatePatient" (click)="createPatient()" >Registrarse
+            <ng-container *ngIf="loadingCreatePatient == true">
+                  <i class="fas fa-circle-notch fa-spin"></i>
+            </ng-container>
+      </button>
+</div>

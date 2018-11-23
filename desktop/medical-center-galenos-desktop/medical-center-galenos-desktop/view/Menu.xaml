@@ -1,0 +1,48 @@
+﻿<controls:MetroWindow x:Class="medical_center_galenos_desktop.view.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:medical_center_galenos_desktop.view"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="Menu" Height="300" Width="550" Background="darkslategray" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Menu HorizontalAlignment="Left" Height="29" Margin="10,10,0,0" VerticalAlignment="Top" Width="522">
+            <MenuItem Header="Mantenedores">
+                <MenuItem Header="Usuarios">
+                    <MenuItem x:Name="menuItemPatients" Header="Pacientes" Click="menuItemPatients_Click"/>
+                    <MenuItem x:Name="menuItemSpecialists" Header="Especialistas" Click="menuItemSpecialists_Click"/>
+                    <MenuItem x:Name="menuItemPersonals" Header="Personal" Click="menuItemPersonals_Click"/>
+                </MenuItem>
+                <MenuItem Header="Centro Médico">
+                    <MenuItem x:Name="menuItemBranchOffices" Header="Sucursales" Click="menuItemBranchOffices_Click"/>
+                    <MenuItem x:Name="menuItemSchedules" Header="Horarios" Click="menuItemSchedules_Click"/>
+                    <MenuItem x:Name="menuItemForecasts" Header="Previsiones" Click="menuItemForecasts_Click"/>
+                    <MenuItem x:Name="menuItemPaymentsType" Header="Medio de Pago" Click="menuItemPaymentsType_Click"/>
+                    <MenuItem x:Name="menuItemBills" Header="Facturas" Click="menuItemBills_Click"/>
+                    <MenuItem x:Name="menuItemStatesMedicalTime" Header="Estados Hora Médica" Click="menuItemStatesMedicalTime_Click"/>
+                </MenuItem>
+                <MenuItem Header="Otros">
+                    <MenuItem x:Name="menuItemCategorys" Header="Categorías" Click="menuItemCategorys_Click"/>
+                    <MenuItem x:Name="menuItemSpecialtys" Header="Especialidads" Click="menuItemSpecialtys_Click"/>
+                    <MenuItem x:Name="menuItemProfiles" Header="Perfiles" Click="menuItemProfiles_Click"/>
+                    <MenuItem x:Name="menuItemRoles" Header="Roles" Click="menuItemRoles_Click"/>
+                </MenuItem>
+                <MenuItem Background="#ff3502" x:Name="menuItemExit" Header="Salir" Click="menuItemExit_Click"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</controls:MetroWindow>

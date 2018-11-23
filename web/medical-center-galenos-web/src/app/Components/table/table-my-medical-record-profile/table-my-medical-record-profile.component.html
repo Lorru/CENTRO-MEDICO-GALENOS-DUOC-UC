@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-4">
+        <button class="btn btn-primary" (click)="updateInformationPersonal()">Actualizar Información Personal</button>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <tbody>
+                  <tr class="bg-primary">
+                      <td colspan="2" style="text-align: center;"><b>Información Personal</b> <i *ngIf="loadingUser == true" class="fas fa-circle-notch fa-spin"></i></td>
+                  </tr>
+                  <tr>
+                      <td>Nombre Completo : </td>
+                      <td>{{ user.fullName }}</td>
+                  </tr>
+                  <tr>
+                      <td>Rut : </td>
+                      <td>{{ user.run }}</td>
+                  </tr>
+                  <tr>
+                      <td>Fecha de Nacimiento : </td>
+                      <td>{{ user.birthDate }}</td>
+                  </tr>
+                  <tr>
+                      <td>Edad : </td>
+                      <td>{{ user.old }}</td>
+                  </tr>
+                  <tr>
+                      <td>Genero : </td>
+                      <td>{{ user.gender }}</td>
+                  </tr>
+                  <tr>
+                      <td>Correo : </td>
+                      <td>{{ user.email }}</td>
+                  </tr>
+                  <ng-container *ngIf="profileId == 2">
+                        <tr>
+                            <td>Estado de Especialista : </td>
+                            <td *ngIf="user.status == 1">(Habilitado) <button class="btn btn-danger" (click)="enableDisableSpecialist()">Deshabilitar</button></td>
+                            <td *ngIf="user.status == 0">(Deshabilitado) <button class="btn btn-success" (click)="enableDisableSpecialist()" style="background: darkcyan;">Habilitar</button></td>
+                        </tr>
+                        <tr>
+                            <td>Sucursal Perteneciente : </td>
+                            <td>{{ user.branchOffice }}</td>
+                        </tr>
+                        <tr>
+                            <td>Especialidad : </td>
+                            <td>{{ user.specialty }}</td>
+                        </tr>
+                  </ng-container>
+                  <ng-container *ngIf="profileId != 2 && profileId != 5">
+                        <tr>
+                            <td>Sucursal Perteneciente : </td>
+                            <td>{{ user.branchOffice }}</td>
+                        </tr>
+                        <tr>
+                            <td>Categoría : </td>
+                            <td>{{ user.category }}</td>
+                        </tr>
+                  </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>

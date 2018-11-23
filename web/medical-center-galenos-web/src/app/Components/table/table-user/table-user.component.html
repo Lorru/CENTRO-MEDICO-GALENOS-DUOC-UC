@@ -1,0 +1,42 @@
+<div class="row">
+<div class="col-md-12">
+    <div class="table-responsive">
+          <table class="table table-hover">
+                <thead>
+                      <tr>
+                          <th *ngIf="loadingUsers == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                          <th>Correo Usuario</th>
+                          <th>Nombre del Usuario</th>
+                          <th>Perfil</th>
+                          <th>Estado</th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                </thead>
+                <tbody>
+                      <ng-container *ngIf="loadingUsers == false && users.length > 0">
+                            <tr *ngFor="let user of users">
+                                <td>{{ returnUserEmail(user) }}</td>
+                                <td>{{ returnUserFullName(user) }}</td>
+                                <td>{{ user.profileId.profileDescription }}</td>
+                                <td>{{ returnUserStatus(user.userStatus) }}</td>
+                                <td><button class="btn btn-primary" (click)="returnObjectUser(user.userId)">Actualizar</button></td>
+                                <td *ngIf="user.userStatus == 1"><button class="btn btn-danger" (click)="enableDisableUser(user.userId)">Deshabilitar</button></td>
+                                <td *ngIf="user.userStatus == 0"><button class="btn btn-success" (click)="enableDisableUser(user.userId)" style="background: darkcyan;">Habilitar</button></td>
+                            </tr>
+                      </ng-container>
+                      <ng-container *ngIf="loadingUsers == false && users.length == 0">
+                            <tr>
+                                  <td colspan="7" style="text-align: center;">
+                                      <p>No hay resultados para esta solicitud.</p>
+                                  </td>
+                            </tr>
+                      </ng-container>
+                </tbody>
+          </table>
+    </div>
+    <ng-container *ngIf="users.length > 0">
+          <ngb-pagination [collectionSize]="countRows" [pageSize]="countRowsByPage" [(page)]="currentPage" (pageChange)="pageChange($event)"></ngb-pagination>
+    </ng-container>
+</div>
+</div>

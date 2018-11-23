@@ -1,0 +1,60 @@
+<div class="row">
+      <div class="col-md-4">
+            <div class="form-group">
+                  <label>Sucursal <span class="text-danger">*</span></label>
+                  <ng-container *ngIf="loadingBranchOffice == true">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                  </ng-container>
+                  <select class="form-control" [(ngModel)]="model.branchOfficeId" (change)="specialtyFindByBranchOfficeId()">
+                        <option *ngFor="let branchOffice of branchOffices" value="{{ branchOffice.branchOfficeId }}">{{ branchOffice.branchOfficeName + ' - ' + branchOffice.branchOfficeLocation }}</option>
+                  </select>
+            </div>
+      </div>
+      <div class="col-md-4">
+            <div class="form-group">
+                  <label>Especialidad <span class="text-danger">*</span></label>
+                  <ng-container *ngIf="loadingSpecialty == true">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                  </ng-container>
+                  <select class="form-control" [(ngModel)]="model.specialtyId" (change)="specialistFindAllSpecialistBySpecialtyIdAndByBranchOfficeIdByStatusActive()">
+                        <option *ngFor="let specialty of specialtys" value="{{ specialty.specialtyId }}">{{ specialty.specialtyDescription }}</option>
+                  </select>
+            </div>
+      </div>
+      <div class="col-md-4">
+            <div class="form-group">
+                  <label>Especialista <span class="text-danger">*</span></label>
+                  <ng-container *ngIf="loadingSpecialist == true">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                  </ng-container>
+                  <select class="form-control" [disabled]="specialists.length == 0" [(ngModel)]="model.specialistId">
+                        <option *ngFor="let specialist of specialists" value="{{ specialist.specialistId }}">{{ specialist.specialistFullName }}</option>
+                  </select>
+            </div>
+      </div>
+</div>
+<div class="row">
+      <div class="col-md-4">
+            <div class="form-group">
+                  <label>Fecha Inicio <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" [(ngModel)]="model.dateStart">
+            </div>
+      </div>
+      <div class="col-md-4">
+            <div class="form-group">
+                  <label>Fecha Final <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" [(ngModel)]="model.dateEnd" min="{{ model.dateStart }}">
+            </div>
+      </div>
+</div>
+<div class="row" *ngIf="specialists.length > 0">
+      <div class="col-md-6">
+            <div class="form-group">
+                  <button class="btn btn-primary" [disabled]="loadingReportBySpecialist" (click)="billFindBySpecialistIdDateStartAndDateEndAndStatusActiveReport()">Emitir Factura
+                        <ng-container *ngIf="loadingReportBySpecialist == true">
+                              <i class="fas fa-circle-notch fa-spin"></i>
+                        </ng-container>
+                  </button>
+            </div>
+      </div>
+</div>

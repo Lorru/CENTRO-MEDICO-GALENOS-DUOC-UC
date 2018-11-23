@@ -1,0 +1,83 @@
+<ngb-accordion activeIds="ngb-panel-0">
+      <ngb-panel title="Información del Centro Médico">
+            <ng-template ngbPanelContent>
+                  <div class="row">
+                        <div class="col-md-3" *ngIf="profileId != 5 && patients.length > 0">
+                              <div class="form-group">
+                                    <label>Paciente <span class="text-danger">*</span></label>
+                                    <ng-container *ngIf="loadingPatient == true">
+                                          <i class="fas fa-circle-notch fa-spin"></i>
+                                    </ng-container>
+                                    <select class="form-control" [(ngModel)]="model.patientId">
+                                          <option *ngFor="let patient of patients" value="{{ patient.patientId }}">{{ patient.patientFullName }}</option>
+                                    </select>
+                              </div>
+                        </div>
+                        <div [ngClass]="{'col-md-4': profileId == 5, 'col-md-3': profileId != 5}">
+                              <div class="form-group">
+                                    <label>Sucursal <span class="text-danger">*</span></label>
+                                    <ng-container *ngIf="loadingBranchOffice == true">
+                                          <i class="fas fa-circle-notch fa-spin"></i>
+                                    </ng-container>
+                                    <select class="form-control" [(ngModel)]="model.branchOfficeId" (change)="specialtyFindByBranchOfficeId()">
+                                          <option *ngFor="let branchOffice of branchOffices" value="{{ branchOffice.branchOfficeId }}">{{ branchOffice.branchOfficeName + ' - ' + branchOffice.branchOfficeLocation }}</option>
+                                    </select>
+                              </div>
+                        </div>
+                        <div [ngClass]="{'col-md-4': profileId == 5, 'col-md-3': profileId != 5}">
+                              <div class="form-group">
+                                    <label>Especialidad <span class="text-danger">*</span></label>
+                                    <ng-container *ngIf="loadingSpecialty == true">
+                                          <i class="fas fa-circle-notch fa-spin"></i>
+                                    </ng-container>
+                                    <select class="form-control" [(ngModel)]="model.specialtyId" (change)="specialistFindAllSpecialistBySpecialtyIdAndByBranchOfficeIdByStatusActive()">
+                                          <option *ngFor="let specialty of specialtys" value="{{ specialty.specialtyId }}">{{ specialty.specialtyDescription }}</option>
+                                    </select>
+                              </div>
+                        </div>
+                        <div [ngClass]="{'col-md-4': profileId == 5, 'col-md-3': profileId != 5}">
+                              <div class="form-group">
+                                    <label>Especialista <span class="text-danger">*</span></label>
+                                    <ng-container *ngIf="loadingSpecialist == true">
+                                          <i class="fas fa-circle-notch fa-spin"></i>
+                                    </ng-container>
+                                    <select class="form-control" [(ngModel)]="model.specialistId" (change)="scheduleFindAllBySpecialistIdAndByBillMedicalTime()">
+                                          <option *ngFor="let specialist of specialists" value="{{ specialist.specialistId }}">{{ specialist.specialistFullName }}</option>
+                                    </select>
+                              </div>
+                        </div>
+                  </div>
+            </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Información de la Hora y Fecha de Reserva" *ngIf="validateRegisterMedicalTime()">
+            <ng-template ngbPanelContent>
+                  <div class="row">
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                    <label>Fecha <span class="text-danger">*</span></label>
+                                    <input min="{{ dateMinMedicalTime }}" type="date" class="form-control" [(ngModel)]="model.billMedicalTime" (change)="scheduleFindAllBySpecialistIdAndByBillMedicalTime()">
+                              </div>
+                        </div>
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                    <label>Horario <span class="text-danger">*</span></label>
+                                    <ng-container *ngIf="loadingSchedule == true">
+                                          <i class="fas fa-circle-notch fa-spin"></i>
+                                    </ng-container>
+                                    <select class="form-control" [(ngModel)]="model.scheduleId">
+                                          <option *ngFor="let schedule of schedules" value="{{ schedule.scheduleId }}">{{ schedule.scheduleHour }}</option>
+                                    </select>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="row" *ngIf="schedules.length > 0">
+                              <div class="col-md-6">
+                                    <div class="form-group">
+                                          <button class="btn btn-primary" (click)="confirmationMedicalTime()">Confirmar</button>
+                                    </div>
+                              </div>
+                        </div>
+            </ng-template>
+      </ngb-panel>
+</ngb-accordion>
+

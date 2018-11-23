@@ -1,0 +1,1582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MedicalCenterGalenosModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BILL">
+          <Key>
+            <PropertyRef Name="BILL_ID" />
+          </Key>
+          <Property Name="BILL_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SPECIALIST_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SCHEDULE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="STATE_MEDICAL_TIME_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FORECAST_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="BILL_MEDICAL_TIME" Type="date" Nullable="false" />
+          <Property Name="BILL_COMMISSIONS" Type="number" Precision="8" Scale="0" />
+          <Property Name="BILL_SALARY" Type="number" Precision="8" Scale="0" />
+          <Property Name="BILL_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BRANCH_OFFICE">
+          <Key>
+            <PropertyRef Name="BRANCH_OFFICE_ID" />
+          </Key>
+          <Property Name="BRANCH_OFFICE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_LOCATION" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BRANCH_OFFICE_CATEGORY">
+          <Key>
+            <PropertyRef Name="BRANCH_OFFICE_CATEGORY_ID" />
+          </Key>
+          <Property Name="BRANCH_OFFICE_CATEGORY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BRANCH_OFFICE_SPECIALTY">
+          <Key>
+            <PropertyRef Name="BRANCH_OFFICE_SPECIALTY_ID" />
+          </Key>
+          <Property Name="BRANCH_OFFICE_SPECIALTY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SPECIALTY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_DESCRIPTION" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="CATEGORY_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EVENT_LOG">
+          <Key>
+            <PropertyRef Name="EVENT_LOG_ID" />
+          </Key>
+          <Property Name="EVENT_LOG_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="EVENT_LOG_DESCRIPTION" Type="varchar2" MaxLength="500" Nullable="false" />
+          <Property Name="EVENT_LOG_DATE" Type="date" Nullable="false" />
+          <Property Name="EVENT_LOG_STATUS_CODE" Type="number" Precision="3" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EXCEPTION_LOG">
+          <Key>
+            <PropertyRef Name="EXCEPTION_LOG_ID" />
+          </Key>
+          <Property Name="EXCEPTION_LOG_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="EXCEPTION_LOG_DESCRIPTION" Type="varchar2" MaxLength="1000" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_DATE" Type="date" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_STATUS_CODE" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_CONTROLLER" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_METHOD" Type="varchar2" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FORECAST">
+          <Key>
+            <PropertyRef Name="FORECAST_ID" />
+          </Key>
+          <Property Name="FORECAST_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FORECAST_DESCRIPTION" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="FORECAST_AMOUNT" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FORECAST_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GENDER">
+          <Key>
+            <PropertyRef Name="GENDER_ID" />
+          </Key>
+          <Property Name="GENDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="GENDER_DESCRIPTION" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="GENDER_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="PATIENT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="GENDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PATIENT_RUN" Type="varchar2" MaxLength="12" Nullable="false" />
+          <Property Name="PATIENT_FIRST_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PATIENT_SECOND_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PATIENT_SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PATIENT_SECOND_SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PATIENT_FULL_NAME" Type="varchar2" MaxLength="200" Nullable="false" />
+          <Property Name="PATIENT_BIRTHDATE" Type="date" Nullable="false" />
+          <Property Name="PATIENT_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PATIENT_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAYMENT_TYPE">
+          <Key>
+            <PropertyRef Name="PAYMENT_TYPE_ID" />
+          </Key>
+          <Property Name="PAYMENT_TYPE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_DESCRIPTION" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_AMOUNT" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERSONAL">
+          <Key>
+            <PropertyRef Name="PERSONAL_ID" />
+          </Key>
+          <Property Name="PERSONAL_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="GENDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PERSONAL_RUN" Type="varchar2" MaxLength="12" Nullable="false" />
+          <Property Name="PERSONAL_FIRST_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PERSONAL_SECOND_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PERSONAL_SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PERSONAL_SECOND_SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PERSONAL_FULL_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PERSONAL_BIRTHDATE" Type="date" Nullable="false" />
+          <Property Name="PERSONAL_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PERSONAL_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROFILE">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PROFILE_DESCRIPTION" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="PROFILE_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROFILE_ROLE">
+          <Key>
+            <PropertyRef Name="PROFILE_ROLE_ID" />
+          </Key>
+          <Property Name="PROFILE_ROLE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PROFILE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ROLE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ROLE_VALUE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ROLE_DESCRIPTION" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="ROLE_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCHEDULE">
+          <Key>
+            <PropertyRef Name="SCHEDULE_ID" />
+          </Key>
+          <Property Name="SCHEDULE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SCHEDULE_HOUR" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="SCHEDULE_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SPECIALIST">
+          <Key>
+            <PropertyRef Name="SPECIALIST_ID" />
+          </Key>
+          <Property Name="SPECIALIST_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SPECIALTY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="GENDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SPECIALIST_RUN" Type="varchar2" MaxLength="12" Nullable="false" />
+          <Property Name="SPECIALIST_FIRST_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SPECIALIST_SECOND_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SPECIALIST_SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SPECIALIST_SECOND_SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SPECIALIST_FULL_NAME" Type="varchar2" MaxLength="200" Nullable="false" />
+          <Property Name="SPECIALIST_BIRTHDATE" Type="date" Nullable="false" />
+          <Property Name="SPECIALIST_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SPECIALIST_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SPECIALTY">
+          <Key>
+            <PropertyRef Name="SPECIALTY_ID" />
+          </Key>
+          <Property Name="SPECIALTY_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SPECIALTY_DESCRIPTION" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SPECIALTY_AMOUNT" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SPECIALTY_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATE_MEDICAL_TIME">
+          <Key>
+            <PropertyRef Name="STATE_MEDICAL_TIME_ID" />
+          </Key>
+          <Property Name="STATE_MEDICAL_TIME_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="STATE_MEDICAL_TIME_DESCRIPTION" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="STATE_MEDICAL_TIME_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SPECIALIST_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="PATIENT_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="PERSONAL_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="PROFILE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="varchar2" MaxLength="200" Nullable="false" />
+          <Property Name="USER_STATUS" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="SYS_C009858">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_CATEGORY" Type="Self.BRANCH_OFFICE_CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_CATEGORY">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009859">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_CATEGORY" Type="Self.BRANCH_OFFICE_CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009864">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_SPECIALTY" Type="Self.BRANCH_OFFICE_SPECIALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_SPECIALTY">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009865">
+          <End Role="SPECIALTY" Type="Self.SPECIALTY" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_SPECIALTY" Type="Self.BRANCH_OFFICE_SPECIALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALTY">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_SPECIALTY">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009878">
+          <End Role="GENDER" Type="Self.GENDER" Multiplicity="1" />
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="GENDER_ID" />
+            </Principal>
+            <Dependent Role="PATIENT">
+              <PropertyRef Name="GENDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009893">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="PERSONAL">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009894">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="PERSONAL">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009895">
+          <End Role="GENDER" Type="Self.GENDER" Multiplicity="1" />
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="GENDER_ID" />
+            </Principal>
+            <Dependent Role="PERSONAL">
+              <PropertyRef Name="GENDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009910">
+          <End Role="SPECIALTY" Type="Self.SPECIALTY" Multiplicity="1" />
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALTY">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Principal>
+            <Dependent Role="SPECIALIST">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009911">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="SPECIALIST">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009912">
+          <End Role="GENDER" Type="Self.GENDER" Multiplicity="1" />
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="GENDER_ID" />
+            </Principal>
+            <Dependent Role="SPECIALIST">
+              <PropertyRef Name="GENDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009918">
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALIST">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009919">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009920">
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONAL">
+              <PropertyRef Name="PERSONAL_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="PERSONAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009925">
+          <End Role="PROFILE" Type="Self.PROFILE" Multiplicity="1" />
+          <End Role="PROFILE_ROLE" Type="Self.PROFILE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFILE">
+              <PropertyRef Name="PROFILE_ID" />
+            </Principal>
+            <Dependent Role="PROFILE_ROLE">
+              <PropertyRef Name="PROFILE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009926">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
+          <End Role="PROFILE_ROLE" Type="Self.PROFILE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="PROFILE_ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009933">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="EVENT_LOG" Type="Self.EVENT_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="EVENT_LOG">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009941">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="EXCEPTION_LOG" Type="Self.EXCEPTION_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="EXCEPTION_LOG">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009950">
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALIST">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009951">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009952">
+          <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCHEDULE">
+              <PropertyRef Name="SCHEDULE_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="SCHEDULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009953">
+          <End Role="PAYMENT_TYPE" Type="Self.PAYMENT_TYPE" Multiplicity="0..1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_TYPE">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009954">
+          <End Role="STATE_MEDICAL_TIME" Type="Self.STATE_MEDICAL_TIME" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE_MEDICAL_TIME">
+              <PropertyRef Name="STATE_MEDICAL_TIME_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="STATE_MEDICAL_TIME_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009955">
+          <End Role="FORECAST" Type="Self.FORECAST" Multiplicity="0..1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORECAST">
+              <PropertyRef Name="FORECAST_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="FORECAST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="EVENT_LOG_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MEDICAL_CENTER_GALENOS">
+          <Parameter Name="USERID" Type="number" Mode="In" />
+          <Parameter Name="EVENTLOGDESCRIPTION" Type="varchar2" Mode="In" />
+          <Parameter Name="EVENTLOGDATE" Type="date" Mode="In" />
+          <Parameter Name="EVENTLOGSTATUSCODE" Type="number" Mode="In" />
+        </Function>
+        <Function Name="EXCEPTION_LOG_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MEDICAL_CENTER_GALENOS">
+          <Parameter Name="EXCEPTIONLOGDESCRIPTION" Type="varchar2" Mode="In" />
+          <Parameter Name="EXCEPTIONLOGDATE" Type="date" Mode="In" />
+          <Parameter Name="EXCEPTIONLOGSTATUSCODE" Type="number" Mode="In" />
+          <Parameter Name="EXCEPTIONLOGCONTROLLER" Type="varchar2" Mode="In" />
+          <Parameter Name="EXCEPTIONLOGMETHOD" Type="varchar2" Mode="In" />
+        </Function>
+        <EntityContainer Name="MedicalCenterGalenosModelStoreContainer">
+          <EntitySet Name="BILL" EntityType="Self.BILL" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="BRANCH_OFFICE" EntityType="Self.BRANCH_OFFICE" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="BRANCH_OFFICE_CATEGORY" EntityType="Self.BRANCH_OFFICE_CATEGORY" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="BRANCH_OFFICE_SPECIALTY" EntityType="Self.BRANCH_OFFICE_SPECIALTY" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="EVENT_LOG" EntityType="Self.EVENT_LOG" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="EXCEPTION_LOG" EntityType="Self.EXCEPTION_LOG" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="FORECAST" EntityType="Self.FORECAST" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="GENDER" EntityType="Self.GENDER" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="PATIENT" EntityType="Self.PATIENT" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_TYPE" EntityType="Self.PAYMENT_TYPE" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="PERSONAL" EntityType="Self.PERSONAL" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="PROFILE" EntityType="Self.PROFILE" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="PROFILE_ROLE" EntityType="Self.PROFILE_ROLE" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="SPECIALIST" EntityType="Self.SPECIALIST" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="SPECIALTY" EntityType="Self.SPECIALTY" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="STATE_MEDICAL_TIME" EntityType="Self.STATE_MEDICAL_TIME" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="MEDICAL_CENTER_GALENOS" store:Type="Tables" />
+          <AssociationSet Name="SYS_C009858" Association="Self.SYS_C009858">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="BRANCH_OFFICE_CATEGORY" EntitySet="BRANCH_OFFICE_CATEGORY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009859" Association="Self.SYS_C009859">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="BRANCH_OFFICE_CATEGORY" EntitySet="BRANCH_OFFICE_CATEGORY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009864" Association="Self.SYS_C009864">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="BRANCH_OFFICE_SPECIALTY" EntitySet="BRANCH_OFFICE_SPECIALTY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009865" Association="Self.SYS_C009865">
+            <End Role="SPECIALTY" EntitySet="SPECIALTY" />
+            <End Role="BRANCH_OFFICE_SPECIALTY" EntitySet="BRANCH_OFFICE_SPECIALTY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009878" Association="Self.SYS_C009878">
+            <End Role="GENDER" EntitySet="GENDER" />
+            <End Role="PATIENT" EntitySet="PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009893" Association="Self.SYS_C009893">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009894" Association="Self.SYS_C009894">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009895" Association="Self.SYS_C009895">
+            <End Role="GENDER" EntitySet="GENDER" />
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009910" Association="Self.SYS_C009910">
+            <End Role="SPECIALTY" EntitySet="SPECIALTY" />
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009911" Association="Self.SYS_C009911">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009912" Association="Self.SYS_C009912">
+            <End Role="GENDER" EntitySet="GENDER" />
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009918" Association="Self.SYS_C009918">
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009919" Association="Self.SYS_C009919">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009920" Association="Self.SYS_C009920">
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009925" Association="Self.SYS_C009925">
+            <End Role="PROFILE" EntitySet="PROFILE" />
+            <End Role="PROFILE_ROLE" EntitySet="PROFILE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009926" Association="Self.SYS_C009926">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="PROFILE_ROLE" EntitySet="PROFILE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009933" Association="Self.SYS_C009933">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="EVENT_LOG" EntitySet="EVENT_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009941" Association="Self.SYS_C009941">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="EXCEPTION_LOG" EntitySet="EXCEPTION_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009950" Association="Self.SYS_C009950">
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009951" Association="Self.SYS_C009951">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009952" Association="Self.SYS_C009952">
+            <End Role="SCHEDULE" EntitySet="SCHEDULE" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009953" Association="Self.SYS_C009953">
+            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009954" Association="Self.SYS_C009954">
+            <End Role="STATE_MEDICAL_TIME" EntitySet="STATE_MEDICAL_TIME" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009955" Association="Self.SYS_C009955">
+            <End Role="FORECAST" EntitySet="FORECAST" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MedicalCenterGalenosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BILL">
+          <Key>
+            <PropertyRef Name="BILL_ID" />
+          </Key>
+          <Property Name="BILL_ID" Type="Int32" Nullable="false" />
+          <Property Name="SPECIALIST_ID" Type="Int32" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="SCHEDULE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_ID" Type="Int32" />
+          <Property Name="STATE_MEDICAL_TIME_ID" Type="Int32" Nullable="false" />
+          <Property Name="FORECAST_ID" Type="Int32" />
+          <Property Name="BILL_MEDICAL_TIME" Type="DateTime" Nullable="false" />
+          <Property Name="BILL_COMMISSIONS" Type="Int32" />
+          <Property Name="BILL_SALARY" Type="Int32" />
+          <Property Name="BILL_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SPECIALIST" Relationship="Self.SYS_C009950" FromRole="BILL" ToRole="SPECIALIST" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.SYS_C009951" FromRole="BILL" ToRole="PATIENT" />
+          <NavigationProperty Name="SCHEDULE" Relationship="Self.SYS_C009952" FromRole="BILL" ToRole="SCHEDULE" />
+          <NavigationProperty Name="PAYMENT_TYPE" Relationship="Self.SYS_C009953" FromRole="BILL" ToRole="PAYMENT_TYPE" />
+          <NavigationProperty Name="STATE_MEDICAL_TIME" Relationship="Self.SYS_C009954" FromRole="BILL" ToRole="STATE_MEDICAL_TIME" />
+          <NavigationProperty Name="FORECAST" Relationship="Self.SYS_C009955" FromRole="BILL" ToRole="FORECAST" />
+        </EntityType>
+        <EntityType Name="BRANCH_OFFICE">
+          <Key>
+            <PropertyRef Name="BRANCH_OFFICE_ID" />
+          </Key>
+          <Property Name="BRANCH_OFFICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_LOCATION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BRANCH_OFFICE_CATEGORY" Relationship="Self.SYS_C009858" FromRole="BRANCH_OFFICE" ToRole="BRANCH_OFFICE_CATEGORY" />
+          <NavigationProperty Name="BRANCH_OFFICE_SPECIALTY" Relationship="Self.SYS_C009864" FromRole="BRANCH_OFFICE" ToRole="BRANCH_OFFICE_SPECIALTY" />
+          <NavigationProperty Name="PERSONAL" Relationship="Self.SYS_C009894" FromRole="BRANCH_OFFICE" ToRole="PERSONAL" />
+          <NavigationProperty Name="SPECIALIST" Relationship="Self.SYS_C009911" FromRole="BRANCH_OFFICE" ToRole="SPECIALIST" />
+        </EntityType>
+        <EntityType Name="BRANCH_OFFICE_CATEGORY">
+          <Key>
+            <PropertyRef Name="BRANCH_OFFICE_CATEGORY_ID" />
+          </Key>
+          <Property Name="BRANCH_OFFICE_CATEGORY_ID" Type="Int32" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BRANCH_OFFICE" Relationship="Self.SYS_C009858" FromRole="BRANCH_OFFICE_CATEGORY" ToRole="BRANCH_OFFICE" />
+          <NavigationProperty Name="CATEGORY" Relationship="Self.SYS_C009859" FromRole="BRANCH_OFFICE_CATEGORY" ToRole="CATEGORY" />
+        </EntityType>
+        <EntityType Name="BRANCH_OFFICE_SPECIALTY">
+          <Key>
+            <PropertyRef Name="BRANCH_OFFICE_SPECIALTY_ID" />
+          </Key>
+          <Property Name="BRANCH_OFFICE_SPECIALTY_ID" Type="Int32" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="SPECIALTY_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BRANCH_OFFICE" Relationship="Self.SYS_C009864" FromRole="BRANCH_OFFICE_SPECIALTY" ToRole="BRANCH_OFFICE" />
+          <NavigationProperty Name="SPECIALTY" Relationship="Self.SYS_C009865" FromRole="BRANCH_OFFICE_SPECIALTY" ToRole="SPECIALTY" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY_DESCRIPTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CATEGORY_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BRANCH_OFFICE_CATEGORY" Relationship="Self.SYS_C009859" FromRole="CATEGORY" ToRole="BRANCH_OFFICE_CATEGORY" />
+          <NavigationProperty Name="PERSONAL" Relationship="Self.SYS_C009893" FromRole="CATEGORY" ToRole="PERSONAL" />
+        </EntityType>
+        <EntityType Name="EVENT_LOG">
+          <Key>
+            <PropertyRef Name="EVENT_LOG_ID" />
+          </Key>
+          <Property Name="EVENT_LOG_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="EVENT_LOG_DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EVENT_LOG_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="EVENT_LOG_STATUS_CODE" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="Self.SYS_C009933" FromRole="EVENT_LOG" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="EXCEPTION_LOG">
+          <Key>
+            <PropertyRef Name="EXCEPTION_LOG_ID" />
+          </Key>
+          <Property Name="EXCEPTION_LOG_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="EXCEPTION_LOG_DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_STATUS_CODE" Type="Int16" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_CONTROLLER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXCEPTION_LOG_METHOD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="Self.SYS_C009941" FromRole="EXCEPTION_LOG" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="FORECAST">
+          <Key>
+            <PropertyRef Name="FORECAST_ID" />
+          </Key>
+          <Property Name="FORECAST_ID" Type="Int32" Nullable="false" />
+          <Property Name="FORECAST_DESCRIPTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FORECAST_AMOUNT" Type="Int32" Nullable="false" />
+          <Property Name="FORECAST_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BILL" Relationship="Self.SYS_C009955" FromRole="FORECAST" ToRole="BILL" />
+        </EntityType>
+        <EntityType Name="GENDER">
+          <Key>
+            <PropertyRef Name="GENDER_ID" />
+          </Key>
+          <Property Name="GENDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="GENDER_DESCRIPTION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GENDER_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.SYS_C009878" FromRole="GENDER" ToRole="PATIENT" />
+          <NavigationProperty Name="PERSONAL" Relationship="Self.SYS_C009895" FromRole="GENDER" ToRole="PERSONAL" />
+          <NavigationProperty Name="SPECIALIST" Relationship="Self.SYS_C009912" FromRole="GENDER" ToRole="SPECIALIST" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="PATIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="GENDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PATIENT_RUN" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_SECOND_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_SECOND_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_FULL_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_BIRTHDATE" Type="DateTime" Nullable="false" />
+          <Property Name="PATIENT_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BILL" Relationship="Self.SYS_C009951" FromRole="PATIENT" ToRole="BILL" />
+          <NavigationProperty Name="GENDER" Relationship="Self.SYS_C009878" FromRole="PATIENT" ToRole="GENDER" />
+          <NavigationProperty Name="USER" Relationship="Self.SYS_C009919" FromRole="PATIENT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PAYMENT_TYPE">
+          <Key>
+            <PropertyRef Name="PAYMENT_TYPE_ID" />
+          </Key>
+          <Property Name="PAYMENT_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_DESCRIPTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_AMOUNT" Type="Int32" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BILL" Relationship="Self.SYS_C009953" FromRole="PAYMENT_TYPE" ToRole="BILL" />
+        </EntityType>
+        <EntityType Name="PERSONAL">
+          <Key>
+            <PropertyRef Name="PERSONAL_ID" />
+          </Key>
+          <Property Name="PERSONAL_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="GENDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PERSONAL_RUN" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONAL_FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONAL_SECOND_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONAL_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONAL_SECOND_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONAL_FULL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONAL_BIRTHDATE" Type="DateTime" Nullable="false" />
+          <Property Name="PERSONAL_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONAL_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BRANCH_OFFICE" Relationship="Self.SYS_C009894" FromRole="PERSONAL" ToRole="BRANCH_OFFICE" />
+          <NavigationProperty Name="CATEGORY" Relationship="Self.SYS_C009893" FromRole="PERSONAL" ToRole="CATEGORY" />
+          <NavigationProperty Name="GENDER" Relationship="Self.SYS_C009895" FromRole="PERSONAL" ToRole="GENDER" />
+          <NavigationProperty Name="USER" Relationship="Self.SYS_C009920" FromRole="PERSONAL" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PROFILE">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROFILE_DESCRIPTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROFILE_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PROFILE_ROLE" Relationship="Self.SYS_C009925" FromRole="PROFILE" ToRole="PROFILE_ROLE" />
+        </EntityType>
+        <EntityType Name="PROFILE_ROLE">
+          <Key>
+            <PropertyRef Name="PROFILE_ROLE_ID" />
+          </Key>
+          <Property Name="PROFILE_ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROFILE_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PROFILE" Relationship="Self.SYS_C009925" FromRole="PROFILE_ROLE" ToRole="PROFILE" />
+          <NavigationProperty Name="ROLE" Relationship="Self.SYS_C009926" FromRole="PROFILE_ROLE" ToRole="ROLE" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_VALUE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE_DESCRIPTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PROFILE_ROLE" Relationship="Self.SYS_C009926" FromRole="ROLE" ToRole="PROFILE_ROLE" />
+        </EntityType>
+        <EntityType Name="SCHEDULE">
+          <Key>
+            <PropertyRef Name="SCHEDULE_ID" />
+          </Key>
+          <Property Name="SCHEDULE_ID" Type="Int32" Nullable="false" />
+          <Property Name="SCHEDULE_HOUR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SCHEDULE_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BILL" Relationship="Self.SYS_C009952" FromRole="SCHEDULE" ToRole="BILL" />
+        </EntityType>
+        <EntityType Name="SPECIALIST">
+          <Key>
+            <PropertyRef Name="SPECIALIST_ID" />
+          </Key>
+          <Property Name="SPECIALIST_ID" Type="Int32" Nullable="false" />
+          <Property Name="SPECIALTY_ID" Type="Int32" Nullable="false" />
+          <Property Name="BRANCH_OFFICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="GENDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SPECIALIST_RUN" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALIST_FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALIST_SECOND_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALIST_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALIST_SECOND_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALIST_FULL_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALIST_BIRTHDATE" Type="DateTime" Nullable="false" />
+          <Property Name="SPECIALIST_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALIST_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BILL" Relationship="Self.SYS_C009950" FromRole="SPECIALIST" ToRole="BILL" />
+          <NavigationProperty Name="BRANCH_OFFICE" Relationship="Self.SYS_C009911" FromRole="SPECIALIST" ToRole="BRANCH_OFFICE" />
+          <NavigationProperty Name="GENDER" Relationship="Self.SYS_C009912" FromRole="SPECIALIST" ToRole="GENDER" />
+          <NavigationProperty Name="SPECIALTY" Relationship="Self.SYS_C009910" FromRole="SPECIALIST" ToRole="SPECIALTY" />
+          <NavigationProperty Name="USER" Relationship="Self.SYS_C009918" FromRole="SPECIALIST" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="SPECIALTY">
+          <Key>
+            <PropertyRef Name="SPECIALTY_ID" />
+          </Key>
+          <Property Name="SPECIALTY_ID" Type="Int32" Nullable="false" />
+          <Property Name="SPECIALTY_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALTY_AMOUNT" Type="Int32" Nullable="false" />
+          <Property Name="SPECIALTY_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BRANCH_OFFICE_SPECIALTY" Relationship="Self.SYS_C009865" FromRole="SPECIALTY" ToRole="BRANCH_OFFICE_SPECIALTY" />
+          <NavigationProperty Name="SPECIALIST" Relationship="Self.SYS_C009910" FromRole="SPECIALTY" ToRole="SPECIALIST" />
+        </EntityType>
+        <EntityType Name="STATE_MEDICAL_TIME">
+          <Key>
+            <PropertyRef Name="STATE_MEDICAL_TIME_ID" />
+          </Key>
+          <Property Name="STATE_MEDICAL_TIME_ID" Type="Int32" Nullable="false" />
+          <Property Name="STATE_MEDICAL_TIME_DESCRIPTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATE_MEDICAL_TIME_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BILL" Relationship="Self.SYS_C009954" FromRole="STATE_MEDICAL_TIME" ToRole="BILL" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SPECIALIST_ID" Type="Int32" />
+          <Property Name="PATIENT_ID" Type="Int32" />
+          <Property Name="PERSONAL_ID" Type="Int32" />
+          <Property Name="PROFILE_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EVENT_LOG" Relationship="Self.SYS_C009933" FromRole="USER" ToRole="EVENT_LOG" />
+          <NavigationProperty Name="EXCEPTION_LOG" Relationship="Self.SYS_C009941" FromRole="USER" ToRole="EXCEPTION_LOG" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.SYS_C009919" FromRole="USER" ToRole="PATIENT" />
+          <NavigationProperty Name="PERSONAL" Relationship="Self.SYS_C009920" FromRole="USER" ToRole="PERSONAL" />
+          <NavigationProperty Name="SPECIALIST" Relationship="Self.SYS_C009918" FromRole="USER" ToRole="SPECIALIST" />
+        </EntityType>
+        <Association Name="SYS_C009950">
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALIST">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009951">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009952">
+          <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCHEDULE">
+              <PropertyRef Name="SCHEDULE_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="SCHEDULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009953">
+          <End Role="PAYMENT_TYPE" Type="Self.PAYMENT_TYPE" Multiplicity="0..1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_TYPE">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009954">
+          <End Role="STATE_MEDICAL_TIME" Type="Self.STATE_MEDICAL_TIME" Multiplicity="1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE_MEDICAL_TIME">
+              <PropertyRef Name="STATE_MEDICAL_TIME_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="STATE_MEDICAL_TIME_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009955">
+          <End Role="FORECAST" Type="Self.FORECAST" Multiplicity="0..1" />
+          <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORECAST">
+              <PropertyRef Name="FORECAST_ID" />
+            </Principal>
+            <Dependent Role="BILL">
+              <PropertyRef Name="FORECAST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009858">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_CATEGORY" Type="Self.BRANCH_OFFICE_CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_CATEGORY">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009864">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_SPECIALTY" Type="Self.BRANCH_OFFICE_SPECIALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_SPECIALTY">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009894">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="PERSONAL">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009911">
+          <End Role="BRANCH_OFFICE" Type="Self.BRANCH_OFFICE" Multiplicity="1" />
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH_OFFICE">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Principal>
+            <Dependent Role="SPECIALIST">
+              <PropertyRef Name="BRANCH_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009859">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_CATEGORY" Type="Self.BRANCH_OFFICE_CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009865">
+          <End Role="SPECIALTY" Type="Self.SPECIALTY" Multiplicity="1" />
+          <End Role="BRANCH_OFFICE_SPECIALTY" Type="Self.BRANCH_OFFICE_SPECIALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALTY">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Principal>
+            <Dependent Role="BRANCH_OFFICE_SPECIALTY">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009893">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="PERSONAL">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009933">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="EVENT_LOG" Type="Self.EVENT_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="EVENT_LOG">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009941">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="EXCEPTION_LOG" Type="Self.EXCEPTION_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="EXCEPTION_LOG">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009878">
+          <End Role="GENDER" Type="Self.GENDER" Multiplicity="1" />
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="GENDER_ID" />
+            </Principal>
+            <Dependent Role="PATIENT">
+              <PropertyRef Name="GENDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009895">
+          <End Role="GENDER" Type="Self.GENDER" Multiplicity="1" />
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="GENDER_ID" />
+            </Principal>
+            <Dependent Role="PERSONAL">
+              <PropertyRef Name="GENDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009912">
+          <End Role="GENDER" Type="Self.GENDER" Multiplicity="1" />
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="GENDER_ID" />
+            </Principal>
+            <Dependent Role="SPECIALIST">
+              <PropertyRef Name="GENDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009919">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009920">
+          <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONAL">
+              <PropertyRef Name="PERSONAL_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="PERSONAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009925">
+          <End Role="PROFILE" Type="Self.PROFILE" Multiplicity="1" />
+          <End Role="PROFILE_ROLE" Type="Self.PROFILE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFILE">
+              <PropertyRef Name="PROFILE_ID" />
+            </Principal>
+            <Dependent Role="PROFILE_ROLE">
+              <PropertyRef Name="PROFILE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009926">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
+          <End Role="PROFILE_ROLE" Type="Self.PROFILE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="PROFILE_ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009910">
+          <End Role="SPECIALTY" Type="Self.SPECIALTY" Multiplicity="1" />
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALTY">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Principal>
+            <Dependent Role="SPECIALIST">
+              <PropertyRef Name="SPECIALTY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C009918">
+          <End Role="SPECIALIST" Type="Self.SPECIALIST" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALIST">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="SPECIALIST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MedicalCenterGalenosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BILL" EntityType="Self.BILL" />
+          <EntitySet Name="BRANCH_OFFICE" EntityType="Self.BRANCH_OFFICE" />
+          <EntitySet Name="BRANCH_OFFICE_CATEGORY" EntityType="Self.BRANCH_OFFICE_CATEGORY" />
+          <EntitySet Name="BRANCH_OFFICE_SPECIALTY" EntityType="Self.BRANCH_OFFICE_SPECIALTY" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" />
+          <EntitySet Name="EVENT_LOG" EntityType="Self.EVENT_LOG" />
+          <EntitySet Name="EXCEPTION_LOG" EntityType="Self.EXCEPTION_LOG" />
+          <EntitySet Name="FORECAST" EntityType="Self.FORECAST" />
+          <EntitySet Name="GENDER" EntityType="Self.GENDER" />
+          <EntitySet Name="PATIENT" EntityType="Self.PATIENT" />
+          <EntitySet Name="PAYMENT_TYPE" EntityType="Self.PAYMENT_TYPE" />
+          <EntitySet Name="PERSONAL" EntityType="Self.PERSONAL" />
+          <EntitySet Name="PROFILE" EntityType="Self.PROFILE" />
+          <EntitySet Name="PROFILE_ROLE" EntityType="Self.PROFILE_ROLE" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" />
+          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" />
+          <EntitySet Name="SPECIALIST" EntityType="Self.SPECIALIST" />
+          <EntitySet Name="SPECIALTY" EntityType="Self.SPECIALTY" />
+          <EntitySet Name="STATE_MEDICAL_TIME" EntityType="Self.STATE_MEDICAL_TIME" />
+          <EntitySet Name="USER" EntityType="Self.USER" />
+          <AssociationSet Name="SYS_C009950" Association="Self.SYS_C009950">
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009951" Association="Self.SYS_C009951">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009952" Association="Self.SYS_C009952">
+            <End Role="SCHEDULE" EntitySet="SCHEDULE" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009953" Association="Self.SYS_C009953">
+            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009954" Association="Self.SYS_C009954">
+            <End Role="STATE_MEDICAL_TIME" EntitySet="STATE_MEDICAL_TIME" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009955" Association="Self.SYS_C009955">
+            <End Role="FORECAST" EntitySet="FORECAST" />
+            <End Role="BILL" EntitySet="BILL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009858" Association="Self.SYS_C009858">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="BRANCH_OFFICE_CATEGORY" EntitySet="BRANCH_OFFICE_CATEGORY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009864" Association="Self.SYS_C009864">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="BRANCH_OFFICE_SPECIALTY" EntitySet="BRANCH_OFFICE_SPECIALTY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009894" Association="Self.SYS_C009894">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009911" Association="Self.SYS_C009911">
+            <End Role="BRANCH_OFFICE" EntitySet="BRANCH_OFFICE" />
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009859" Association="Self.SYS_C009859">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="BRANCH_OFFICE_CATEGORY" EntitySet="BRANCH_OFFICE_CATEGORY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009865" Association="Self.SYS_C009865">
+            <End Role="SPECIALTY" EntitySet="SPECIALTY" />
+            <End Role="BRANCH_OFFICE_SPECIALTY" EntitySet="BRANCH_OFFICE_SPECIALTY" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009893" Association="Self.SYS_C009893">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009933" Association="Self.SYS_C009933">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="EVENT_LOG" EntitySet="EVENT_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009941" Association="Self.SYS_C009941">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="EXCEPTION_LOG" EntitySet="EXCEPTION_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009878" Association="Self.SYS_C009878">
+            <End Role="GENDER" EntitySet="GENDER" />
+            <End Role="PATIENT" EntitySet="PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009895" Association="Self.SYS_C009895">
+            <End Role="GENDER" EntitySet="GENDER" />
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009912" Association="Self.SYS_C009912">
+            <End Role="GENDER" EntitySet="GENDER" />
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009919" Association="Self.SYS_C009919">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009920" Association="Self.SYS_C009920">
+            <End Role="PERSONAL" EntitySet="PERSONAL" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009925" Association="Self.SYS_C009925">
+            <End Role="PROFILE" EntitySet="PROFILE" />
+            <End Role="PROFILE_ROLE" EntitySet="PROFILE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009926" Association="Self.SYS_C009926">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="PROFILE_ROLE" EntitySet="PROFILE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009910" Association="Self.SYS_C009910">
+            <End Role="SPECIALTY" EntitySet="SPECIALTY" />
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C009918" Association="Self.SYS_C009918">
+            <End Role="SPECIALIST" EntitySet="SPECIALIST" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <FunctionImport Name="EVENT_LOG_SP">
+            <Parameter Name="USERID" Mode="In" Type="Decimal" />
+            <Parameter Name="EVENTLOGDESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="EVENTLOGDATE" Mode="In" Type="DateTime" />
+            <Parameter Name="EVENTLOGSTATUSCODE" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="EXCEPTION_LOG_SP">
+            <Parameter Name="EXCEPTIONLOGDESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="EXCEPTIONLOGDATE" Mode="In" Type="DateTime" />
+            <Parameter Name="EXCEPTIONLOGSTATUSCODE" Mode="In" Type="Decimal" />
+            <Parameter Name="EXCEPTIONLOGCONTROLLER" Mode="In" Type="String" />
+            <Parameter Name="EXCEPTIONLOGMETHOD" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MedicalCenterGalenosModelStoreContainer" CdmEntityContainer="MedicalCenterGalenosEntities">
+          <EntitySetMapping Name="BILL">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.BILL">
+              <MappingFragment StoreEntitySet="BILL">
+                <ScalarProperty Name="BILL_ID" ColumnName="BILL_ID" />
+                <ScalarProperty Name="SPECIALIST_ID" ColumnName="SPECIALIST_ID" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="SCHEDULE_ID" ColumnName="SCHEDULE_ID" />
+                <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
+                <ScalarProperty Name="STATE_MEDICAL_TIME_ID" ColumnName="STATE_MEDICAL_TIME_ID" />
+                <ScalarProperty Name="FORECAST_ID" ColumnName="FORECAST_ID" />
+                <ScalarProperty Name="BILL_MEDICAL_TIME" ColumnName="BILL_MEDICAL_TIME" />
+                <ScalarProperty Name="BILL_COMMISSIONS" ColumnName="BILL_COMMISSIONS" />
+                <ScalarProperty Name="BILL_SALARY" ColumnName="BILL_SALARY" />
+                <ScalarProperty Name="BILL_STATUS" ColumnName="BILL_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BRANCH_OFFICE">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.BRANCH_OFFICE">
+              <MappingFragment StoreEntitySet="BRANCH_OFFICE">
+                <ScalarProperty Name="BRANCH_OFFICE_ID" ColumnName="BRANCH_OFFICE_ID" />
+                <ScalarProperty Name="BRANCH_OFFICE_NAME" ColumnName="BRANCH_OFFICE_NAME" />
+                <ScalarProperty Name="BRANCH_OFFICE_LOCATION" ColumnName="BRANCH_OFFICE_LOCATION" />
+                <ScalarProperty Name="BRANCH_OFFICE_STATUS" ColumnName="BRANCH_OFFICE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BRANCH_OFFICE_CATEGORY">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.BRANCH_OFFICE_CATEGORY">
+              <MappingFragment StoreEntitySet="BRANCH_OFFICE_CATEGORY">
+                <ScalarProperty Name="BRANCH_OFFICE_CATEGORY_ID" ColumnName="BRANCH_OFFICE_CATEGORY_ID" />
+                <ScalarProperty Name="BRANCH_OFFICE_ID" ColumnName="BRANCH_OFFICE_ID" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BRANCH_OFFICE_SPECIALTY">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.BRANCH_OFFICE_SPECIALTY">
+              <MappingFragment StoreEntitySet="BRANCH_OFFICE_SPECIALTY">
+                <ScalarProperty Name="BRANCH_OFFICE_SPECIALTY_ID" ColumnName="BRANCH_OFFICE_SPECIALTY_ID" />
+                <ScalarProperty Name="BRANCH_OFFICE_ID" ColumnName="BRANCH_OFFICE_ID" />
+                <ScalarProperty Name="SPECIALTY_ID" ColumnName="SPECIALTY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORY">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="CATEGORY_DESCRIPTION" ColumnName="CATEGORY_DESCRIPTION" />
+                <ScalarProperty Name="CATEGORY_STATUS" ColumnName="CATEGORY_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENT_LOG">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.EVENT_LOG">
+              <MappingFragment StoreEntitySet="EVENT_LOG">
+                <ScalarProperty Name="EVENT_LOG_ID" ColumnName="EVENT_LOG_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="EVENT_LOG_DESCRIPTION" ColumnName="EVENT_LOG_DESCRIPTION" />
+                <ScalarProperty Name="EVENT_LOG_DATE" ColumnName="EVENT_LOG_DATE" />
+                <ScalarProperty Name="EVENT_LOG_STATUS_CODE" ColumnName="EVENT_LOG_STATUS_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXCEPTION_LOG">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.EXCEPTION_LOG">
+              <MappingFragment StoreEntitySet="EXCEPTION_LOG">
+                <ScalarProperty Name="EXCEPTION_LOG_ID" ColumnName="EXCEPTION_LOG_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="EXCEPTION_LOG_DESCRIPTION" ColumnName="EXCEPTION_LOG_DESCRIPTION" />
+                <ScalarProperty Name="EXCEPTION_LOG_DATE" ColumnName="EXCEPTION_LOG_DATE" />
+                <ScalarProperty Name="EXCEPTION_LOG_STATUS_CODE" ColumnName="EXCEPTION_LOG_STATUS_CODE" />
+                <ScalarProperty Name="EXCEPTION_LOG_CONTROLLER" ColumnName="EXCEPTION_LOG_CONTROLLER" />
+                <ScalarProperty Name="EXCEPTION_LOG_METHOD" ColumnName="EXCEPTION_LOG_METHOD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FORECAST">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.FORECAST">
+              <MappingFragment StoreEntitySet="FORECAST">
+                <ScalarProperty Name="FORECAST_ID" ColumnName="FORECAST_ID" />
+                <ScalarProperty Name="FORECAST_DESCRIPTION" ColumnName="FORECAST_DESCRIPTION" />
+                <ScalarProperty Name="FORECAST_AMOUNT" ColumnName="FORECAST_AMOUNT" />
+                <ScalarProperty Name="FORECAST_STATUS" ColumnName="FORECAST_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GENDER">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.GENDER">
+              <MappingFragment StoreEntitySet="GENDER">
+                <ScalarProperty Name="GENDER_ID" ColumnName="GENDER_ID" />
+                <ScalarProperty Name="GENDER_DESCRIPTION" ColumnName="GENDER_DESCRIPTION" />
+                <ScalarProperty Name="GENDER_STATUS" ColumnName="GENDER_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PATIENT">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.PATIENT">
+              <MappingFragment StoreEntitySet="PATIENT">
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="GENDER_ID" ColumnName="GENDER_ID" />
+                <ScalarProperty Name="PATIENT_RUN" ColumnName="PATIENT_RUN" />
+                <ScalarProperty Name="PATIENT_FIRST_NAME" ColumnName="PATIENT_FIRST_NAME" />
+                <ScalarProperty Name="PATIENT_SECOND_NAME" ColumnName="PATIENT_SECOND_NAME" />
+                <ScalarProperty Name="PATIENT_SURNAME" ColumnName="PATIENT_SURNAME" />
+                <ScalarProperty Name="PATIENT_SECOND_SURNAME" ColumnName="PATIENT_SECOND_SURNAME" />
+                <ScalarProperty Name="PATIENT_FULL_NAME" ColumnName="PATIENT_FULL_NAME" />
+                <ScalarProperty Name="PATIENT_BIRTHDATE" ColumnName="PATIENT_BIRTHDATE" />
+                <ScalarProperty Name="PATIENT_EMAIL" ColumnName="PATIENT_EMAIL" />
+                <ScalarProperty Name="PATIENT_STATUS" ColumnName="PATIENT_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENT_TYPE">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.PAYMENT_TYPE">
+              <MappingFragment StoreEntitySet="PAYMENT_TYPE">
+                <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
+                <ScalarProperty Name="PAYMENT_TYPE_DESCRIPTION" ColumnName="PAYMENT_TYPE_DESCRIPTION" />
+                <ScalarProperty Name="PAYMENT_TYPE_AMOUNT" ColumnName="PAYMENT_TYPE_AMOUNT" />
+                <ScalarProperty Name="PAYMENT_TYPE_STATUS" ColumnName="PAYMENT_TYPE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSONAL">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.PERSONAL">
+              <MappingFragment StoreEntitySet="PERSONAL">
+                <ScalarProperty Name="PERSONAL_ID" ColumnName="PERSONAL_ID" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="BRANCH_OFFICE_ID" ColumnName="BRANCH_OFFICE_ID" />
+                <ScalarProperty Name="GENDER_ID" ColumnName="GENDER_ID" />
+                <ScalarProperty Name="PERSONAL_RUN" ColumnName="PERSONAL_RUN" />
+                <ScalarProperty Name="PERSONAL_FIRST_NAME" ColumnName="PERSONAL_FIRST_NAME" />
+                <ScalarProperty Name="PERSONAL_SECOND_NAME" ColumnName="PERSONAL_SECOND_NAME" />
+                <ScalarProperty Name="PERSONAL_SURNAME" ColumnName="PERSONAL_SURNAME" />
+                <ScalarProperty Name="PERSONAL_SECOND_SURNAME" ColumnName="PERSONAL_SECOND_SURNAME" />
+                <ScalarProperty Name="PERSONAL_FULL_NAME" ColumnName="PERSONAL_FULL_NAME" />
+                <ScalarProperty Name="PERSONAL_BIRTHDATE" ColumnName="PERSONAL_BIRTHDATE" />
+                <ScalarProperty Name="PERSONAL_EMAIL" ColumnName="PERSONAL_EMAIL" />
+                <ScalarProperty Name="PERSONAL_STATUS" ColumnName="PERSONAL_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFILE">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.PROFILE">
+              <MappingFragment StoreEntitySet="PROFILE">
+                <ScalarProperty Name="PROFILE_ID" ColumnName="PROFILE_ID" />
+                <ScalarProperty Name="PROFILE_DESCRIPTION" ColumnName="PROFILE_DESCRIPTION" />
+                <ScalarProperty Name="PROFILE_STATUS" ColumnName="PROFILE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFILE_ROLE">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.PROFILE_ROLE">
+              <MappingFragment StoreEntitySet="PROFILE_ROLE">
+                <ScalarProperty Name="PROFILE_ROLE_ID" ColumnName="PROFILE_ROLE_ID" />
+                <ScalarProperty Name="PROFILE_ID" ColumnName="PROFILE_ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLE">
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="ROLE_VALUE" ColumnName="ROLE_VALUE" />
+                <ScalarProperty Name="ROLE_DESCRIPTION" ColumnName="ROLE_DESCRIPTION" />
+                <ScalarProperty Name="ROLE_STATUS" ColumnName="ROLE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SCHEDULE">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.SCHEDULE">
+              <MappingFragment StoreEntitySet="SCHEDULE">
+                <ScalarProperty Name="SCHEDULE_ID" ColumnName="SCHEDULE_ID" />
+                <ScalarProperty Name="SCHEDULE_HOUR" ColumnName="SCHEDULE_HOUR" />
+                <ScalarProperty Name="SCHEDULE_STATUS" ColumnName="SCHEDULE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPECIALIST">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.SPECIALIST">
+              <MappingFragment StoreEntitySet="SPECIALIST">
+                <ScalarProperty Name="SPECIALIST_ID" ColumnName="SPECIALIST_ID" />
+                <ScalarProperty Name="SPECIALTY_ID" ColumnName="SPECIALTY_ID" />
+                <ScalarProperty Name="BRANCH_OFFICE_ID" ColumnName="BRANCH_OFFICE_ID" />
+                <ScalarProperty Name="GENDER_ID" ColumnName="GENDER_ID" />
+                <ScalarProperty Name="SPECIALIST_RUN" ColumnName="SPECIALIST_RUN" />
+                <ScalarProperty Name="SPECIALIST_FIRST_NAME" ColumnName="SPECIALIST_FIRST_NAME" />
+                <ScalarProperty Name="SPECIALIST_SECOND_NAME" ColumnName="SPECIALIST_SECOND_NAME" />
+                <ScalarProperty Name="SPECIALIST_SURNAME" ColumnName="SPECIALIST_SURNAME" />
+                <ScalarProperty Name="SPECIALIST_SECOND_SURNAME" ColumnName="SPECIALIST_SECOND_SURNAME" />
+                <ScalarProperty Name="SPECIALIST_FULL_NAME" ColumnName="SPECIALIST_FULL_NAME" />
+                <ScalarProperty Name="SPECIALIST_BIRTHDATE" ColumnName="SPECIALIST_BIRTHDATE" />
+                <ScalarProperty Name="SPECIALIST_EMAIL" ColumnName="SPECIALIST_EMAIL" />
+                <ScalarProperty Name="SPECIALIST_STATUS" ColumnName="SPECIALIST_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPECIALTY">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.SPECIALTY">
+              <MappingFragment StoreEntitySet="SPECIALTY">
+                <ScalarProperty Name="SPECIALTY_ID" ColumnName="SPECIALTY_ID" />
+                <ScalarProperty Name="SPECIALTY_DESCRIPTION" ColumnName="SPECIALTY_DESCRIPTION" />
+                <ScalarProperty Name="SPECIALTY_AMOUNT" ColumnName="SPECIALTY_AMOUNT" />
+                <ScalarProperty Name="SPECIALTY_STATUS" ColumnName="SPECIALTY_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATE_MEDICAL_TIME">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.STATE_MEDICAL_TIME">
+              <MappingFragment StoreEntitySet="STATE_MEDICAL_TIME">
+                <ScalarProperty Name="STATE_MEDICAL_TIME_ID" ColumnName="STATE_MEDICAL_TIME_ID" />
+                <ScalarProperty Name="STATE_MEDICAL_TIME_DESCRIPTION" ColumnName="STATE_MEDICAL_TIME_DESCRIPTION" />
+                <ScalarProperty Name="STATE_MEDICAL_TIME_STATUS" ColumnName="STATE_MEDICAL_TIME_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="MedicalCenterGalenosModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="SPECIALIST_ID" ColumnName="SPECIALIST_ID" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="PERSONAL_ID" ColumnName="PERSONAL_ID" />
+                <ScalarProperty Name="PROFILE_ID" ColumnName="PROFILE_ID" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="USER_STATUS" ColumnName="USER_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EVENT_LOG_SP" FunctionName="MedicalCenterGalenosModel.Store.EVENT_LOG_SP" />
+          <FunctionImportMapping FunctionImportName="EXCEPTION_LOG_SP" FunctionName="MedicalCenterGalenosModel.Store.EXCEPTION_LOG_SP" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

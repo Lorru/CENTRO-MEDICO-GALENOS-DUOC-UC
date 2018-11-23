@@ -1,0 +1,110 @@
+<div class="modal-header" style="background: darkcyan;">
+      <h4 class="modal-title">Actualizar Datos</h4>
+  <button type="button" class="close" aria-hidden="true" (click)="dismiss()">×</button>
+</div>
+<div class="modal-body" style="background: darkslategray;">
+    <div class="row">
+          <div class="col-md-12">
+                      <label>Nombre Completo <span class="text-danger">*</span></label>
+          </div>
+    </div>
+    <div class="row">
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Primer Nombre..." [(ngModel)]="model.specialistFirstName"/>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Segundo Nombre..." [(ngModel)]="model.specialistSecondName"/>
+                      </div>
+                </div>
+    </div>
+    <div class="row">
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Primer Apellido..." [(ngModel)]="model.specialistSurName"/>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Segundo Apellido..." [(ngModel)]="model.specialistSecondSurName"/>
+                      </div>
+                </div>
+    </div>
+    <div class="row">
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <label>Rut <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="Rut..." [(ngModel)]="model.specialistRun"/>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <label>Fecha de Nacimiento <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" [(ngModel)]="model.specialistBirthDate">
+                      </div>
+                </div>
+    </div>
+    <div class="row">
+                <div class="col-md-12">
+                      <div class="form-group">
+                            <label>Genero <span class="text-danger">*</span></label>
+                            <ng-container *ngIf="loadingGender == true">
+                                  <i class="fas fa-circle-notch fa-spin"></i>
+                            </ng-container>
+                            <select class="form-control" [(ngModel)]="model.genderId">
+                                  <option *ngFor="let gender of genders" value="{{ gender.genderId }}">{{ gender.genderDescription }}</option>
+                            </select>
+                      </div>
+                </div>
+    </div>
+    <div class="row">
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <label>Correo <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="Correo..." [(ngModel)]="model.specialistEmail"/>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                      <div class="form-group">
+                            <label>Clave <span class="text-danger">*</span></label>
+                            <input type="password" class="form-control" placeholder="Clave..." [(ngModel)]="model.userPassword"/>
+                      </div>
+                </div>
+    </div>
+    <div class="row">
+                <div class="col-md-12">
+                      <div class="form-group">
+                            <label>Sucursal <span class="text-danger">*</span></label>
+                            <ng-container *ngIf="loadingBranchOffice == true">
+                                  <i class="fas fa-circle-notch fa-spin"></i>
+                            </ng-container>
+                            <select class="form-control" [(ngModel)]="model.branchOfficeId" (change)="specialtyFindByBranchOfficeId()">
+                                  <option *ngFor="let branchOffice of branchOffices" value="{{ branchOffice.branchOfficeId }}">{{ branchOffice.branchOfficeName + ' - ' + branchOffice.branchOfficeLocation }}</option>
+                            </select>
+                      </div>
+                </div>
+    </div>
+    <div class="row">
+                <div class="col-md-12">
+                      <div class="form-group">
+                            <label>Especialidad <span class="text-danger">*</span></label>
+                            <ng-container *ngIf="loadingSpecialty == true">
+                                  <i class="fas fa-circle-notch fa-spin"></i>
+                            </ng-container>
+                            <select class="form-control" [(ngModel)]="model.specialtyId">
+                                  <option *ngFor="let specialty of specialtys" value="{{ specialty.specialtyId }}">{{ specialty.specialtyDescription }}</option>
+                            </select>
+                      </div>
+                </div>
+    </div>
+</div>
+<div class="modal-footer" style="background: darkcyan;">
+  <button *ngIf="specialtys.length > 0" [disabled]="loadingUpdateSpecialist" class="btn btn-primary" (click)="specialistUpdate()">Actualizar
+        <ng-container *ngIf="loadingUpdateSpecialist == true">
+              <i class="fas fa-circle-notch fa-spin"></i>
+        </ng-container>
+  </button>
+  <a href="javascript:;" class="btn btn-white" (click)="dismiss()">Salir</a>
+</div>

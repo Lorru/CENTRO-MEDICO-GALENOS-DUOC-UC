@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da0e8d5278fa4fb1bd3e52f06ea74471" Name="Diagram1">
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.BILL" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.BRANCH_OFFICE" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.BRANCH_OFFICE_CATEGORY" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.BRANCH_OFFICE_SPECIALTY" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.CATEGORY" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.EVENT_LOG" Width="1.5" PointX="10.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.EXCEPTION_LOG" Width="1.5" PointX="10.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.FORECAST" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.GENDER" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.PATIENT" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.PAYMENT_TYPE" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.PERSONAL" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.PROFILE" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.PROFILE_ROLE" Width="1.5" PointX="11" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.ROLE" Width="1.5" PointX="8.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.SCHEDULE" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.SPECIALIST" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.SPECIALTY" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.STATE_MEDICAL_TIME" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalCenterGalenosModel.USER" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009950" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009951" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009952" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009953" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009954" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009955" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009858" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009864" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009894" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009911" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009859" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009865" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009893" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009933" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009941" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009878" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009895" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009912" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009919" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009920" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009925" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009926" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009910" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalCenterGalenosModel.SYS_C009918" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

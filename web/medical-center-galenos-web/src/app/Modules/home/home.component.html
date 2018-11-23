@@ -1,0 +1,40 @@
+<ol class="breadcrumb pull-right">
+      <li class="breadcrumb-item"><a href="javascript:;">Centro Médico Galenos</a></li>
+      <li class="breadcrumb-item active"><a href="javascript:;">Inicio</a></li>
+</ol>
+<h1 class="page-header"> <i class="fa fa-home"></i> Inicio</h1>
+<div class="panel panel-primary">
+      <div class="panel-heading" style="background: darkcyan;">
+            <div class="panel-heading-btn">
+                  <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            </div>
+            <h4 class="panel-title">Bienvenido {{ userName }}</h4>
+      </div>
+      <div class="panel-body">
+            <div class="row" *ngIf="profileId == 1">
+                  <div class="col-md-12">
+                        <p>Aquí podrás administrar la aplicación web completamente, tanto como registrar usuario y revisar los logs de la aplicación.</p>
+                  </div>
+            </div>
+            <div class="row" *ngIf="profileId == 2">
+                  <div class="col-md-12">
+                        <p>Aquí podrás revisar los pacientes que tienes por atender y/o los pacientes que ya atendiste.</p>
+                  </div>
+            </div>
+            <div class="row" *ngIf="profileId == 3">
+                  <div class="col-md-12">
+                        <p>Aquí podrás registrar a los pacientes y poder realizar reportes y/o facturas.</p>
+                  </div>
+            </div>
+            <div class="row" *ngIf="profileId == 4">
+                  <div class="col-md-12">
+                        <p>Aquí podrás registrar paciente, además de registrar hora médica y el pago de hora médica.</p>
+                  </div>
+            </div>
+            <div class="row" *ngIf="profileId == 5">
+                  <div class="col-md-12">
+                        <p>Aquí podrás registrar tus horas médicas para la especialidad que necesites.</p>
+                  </div>
+            </div>
+      </div>
+</div>

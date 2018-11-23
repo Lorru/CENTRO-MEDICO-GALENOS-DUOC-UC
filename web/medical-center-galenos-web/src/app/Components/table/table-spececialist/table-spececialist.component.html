@@ -1,0 +1,51 @@
+<div class="row">
+      <div class="col-md-4">
+            <button class="btn btn-primary" (click)="createSpecialist()">Agregar</button>
+      </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+        <div class="table-responsive">
+              <table class="table table-hover">
+                    <thead>
+                          <tr>
+                              <th *ngIf="loadingSpecialists == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                              <th>Rut del Especialista</th>
+                              <th>Nombre del Especialista</th>
+                              <th>Genero</th>
+                              <th>Fecha de Nacimiento</th>
+                              <th>Especialidad</th>
+                              <th>Centro médico</th>
+                              <th>Estado</th>
+                              <th></th>
+                          </tr>
+                    </thead>
+                    <tbody>
+                          <ng-container *ngIf="loadingSpecialists == false && specialists.length > 0">
+                                <tr *ngFor="let specialist of specialists">
+                                    <td>{{ specialist.specialistRun }}</td>
+                                    <td>{{ specialist.specialistFullName }}</td>
+                                    <td>{{ specialist.genderId.genderDescription }}</td>
+                                    <td>{{ transformSpecialistBirthDate(specialist.specialistBirthDate) }}</td>
+                                    <td>{{ specialist.specialtyId.specialtyDescription }}</td>
+                                    <td>{{ specialist.branchOfficeId.branchOfficeName }}</td>
+                                    <td>{{ returnSpecialistStatus(specialist.specialistStatus) }}</td>
+                                    <td *ngIf="specialist.specialistStatus == 1"><button class="btn btn-danger" (click)="enableDisableSpecialist(specialist.specialistId)">Deshabilitar</button></td>
+                                    <td *ngIf="specialist.specialistStatus == 0"><button class="btn btn-success" (click)="enableDisableSpecialist(specialist.specialistId)" style="background: darkcyan;">Habilitar</button></td>
+                                </tr>
+                          </ng-container>
+                          <ng-container *ngIf="loadingSpecialists == false && specialists.length == 0">
+                                <tr>
+                                      <td colspan="7" style="text-align: center;">
+                                          <p>No hay resultados para esta solicitud.</p>
+                                      </td>
+                                </tr>
+                          </ng-container>
+                    </tbody>
+              </table>
+        </div>
+        <ng-container *ngIf="specialists.length > 0">
+              <ngb-pagination [collectionSize]="countRows" [pageSize]="countRowsByPage" [(page)]="currentPage" (pageChange)="pageChange($event)"></ngb-pagination>
+        </ng-container>
+  </div>
+</div>

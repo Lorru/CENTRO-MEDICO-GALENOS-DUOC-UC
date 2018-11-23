@@ -1,0 +1,24 @@
+<div class="modal-header">
+      <h4 class="modal-title">Confirmar Reserva de Hora Médica</h4>
+      <button type="button" class="close" aria-hidden="true" (click)="dismiss()">×</button>
+</div>
+<div class="modal-body">
+      <div class="alert alert-success m-b-0" style="background: darkcyan;">
+            <h5><i class="fa fa-clock"></i> Confirmar Reserva de Hora Médica para {{ objectSpecialty[0].specialtyDescription }}</h5>
+            <ul>
+                  <li>Sucursal: {{ objectBranchOffice[0].branchOfficeName + ' - ' + objectBranchOffice[0].branchOfficeLocation }}</li>
+                  <li>Especialidad: {{ objectSpecialty[0].specialtyDescription }}</li>
+                  <li>Especialista: {{ objectSpecialist[0].specialistFullName }}</li>
+                  <li>Hora: {{ objectSchedule[0].scheduleHour }}</li>
+                  <li>Fecha: {{ billMedicalTime }}</li>
+            </ul>
+      </div>
+</div>
+<div class="modal-footer">
+      <button class="btn btn-primary" [disabled]="loadingBillCreate" (click)="billCreate()">Reservar Hora
+            <ng-container *ngIf="loadingBillCreate == true">
+                  <i class="fas fa-circle-notch fa-spin"></i>
+            </ng-container>
+      </button>
+      <a href="javascript:;" class="btn btn-white" (click)="dismiss()">Salir</a>
+</div>

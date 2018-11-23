@@ -1,0 +1,46 @@
+<div class="row">
+      <div class="col-md-12">
+            <div class="table-responsive">
+                  <table class="table table-hover">
+                        <thead>
+                              <tr>
+                                    <th *ngIf="loadingBillByPatient == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                                    <th>Sucursal</th>
+                                    <th>Especialidad</th>
+                                    <th>Especialista</th>
+                                    <th>Fecha Médica</th>
+                                    <th>Hora Médica</th>
+                                    <th>Estado</th>
+                                    <th *ngIf="billsPatient.length > 0"></th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                              <ng-container *ngIf="loadingBillByPatient == false && billsPatient.length > 0">
+                                    <tr *ngFor="let bill of billsPatient">
+                                          <td>{{ bill.specialistId.branchOfficeId.branchOfficeName }}</td>
+                                          <td>{{ bill.specialistId.specialtyId.specialtyDescription }}</td>
+                                          <td>{{ bill.specialistId.specialistFullName }}</td>
+                                          <td>{{ transformBillMedicalTime(bill.billMedicalTime) }}</td>
+                                          <td>{{ bill.scheduleId.scheduleHour }}</td>
+                                          <td>{{ bill.stateMedicalTimeId.stateMedicalTimeDescription }}</td>
+                                          <td *ngIf="bill.stateMedicalTimeId.stateMedicalTimeId == 1">
+                                                <button *ngIf="transformBillMedicalTime(bill.billMedicalTime) > fullYear" class="btn btn-danger" (click)="cancelMedicalTime(bill.billId)">Anular</button>
+                                                <span *ngIf="transformBillMedicalTime(bill.billMedicalTime) < fullYear"></span>
+                                          </td>
+                                    </tr>
+                              </ng-container>
+                              <ng-container *ngIf="loadingBillByPatient == false && billsPatient.length == 0">
+                                    <tr>
+                                          <td colspan="7" style="text-align: center;">
+                                                <p>Hasta el momento no tienes horas médicas registradas.</p>
+                                          </td>
+                                    </tr>
+                              </ng-container>
+                        </tbody>
+                  </table>
+            </div>
+            <ng-container *ngIf="billsPatient.length > 0">
+                  <ngb-pagination [collectionSize]="countRows" [pageSize]="countRowsByPage" [(page)]="currentPage" (pageChange)="pageChange($event)"></ngb-pagination>
+            </ng-container>
+      </div>
+</div>

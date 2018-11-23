@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">Atender Paciente</h4>
+    <button type="button" class="close" aria-hidden="true" (click)="dismiss()">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-success m-b-0" style="background: darkcyan;">
+          <h5><i class="fa fa-info-circle"></i> Atender Paciente</h5>
+          <h4>{{ message }}</h4>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" [disabled]="loadingAttended" (click)="attendedPatient()">Atender
+          <ng-container *ngIf="loadingAttended == true">
+                <i class="fas fa-circle-notch fa-spin"></i>
+          </ng-container>
+      </button>
+    <a href="javascript:;" class="btn btn-white" (click)="dismiss()">Salir</a>
+  </div>

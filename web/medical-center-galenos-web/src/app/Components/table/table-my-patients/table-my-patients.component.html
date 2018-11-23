@@ -1,0 +1,86 @@
+<ngb-accordion activeIds="ngb-panel-0">
+    <ngb-panel title="En Espera">
+          <ng-template ngbPanelContent>
+                <div class="row">
+                      <div class="col-md-12">
+                            <div class="table-responsive">
+                                  <table class="table table-hover">
+                                        <thead>
+                                              <tr>
+                                                    <th *ngIf="loadingOnHold == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                                                    <th>Rut del Paciente</th>
+                                                    <th>Nombre del Paciente</th>
+                                                    <th>Fecha Médica</th>
+                                                    <th>Hora Médica</th>
+                                                    <th *ngIf="patientsOnHold.length > 0"></th>
+                                              </tr>
+                                        </thead>
+                                        <tbody>
+                                              <ng-container *ngIf="loadingOnHold == false && patientsOnHold.length > 0">
+                                                    <tr *ngFor="let patient of patientsOnHold">
+                                                          <td>{{ patient.patientId.patientRun }}</td>
+                                                          <td>{{ patient.patientId.patientFullName }}</td>
+                                                          <td>{{ transformBillMedicalTime(patient.billMedicalTime) }}</td>
+                                                          <td>{{ patient.scheduleId.scheduleHour }}</td>
+                                                          <td><button class="btn btn-success" style="background: darkcyan;" (click)="attendedPatient(patient.billId)">Atender</button></td>
+                                                    </tr>
+                                              </ng-container>
+                                              <ng-container *ngIf="loadingOnHold == false && patientsOnHold.length == 0">
+                                                    <tr>
+                                                          <td colspan="7" style="text-align: center;">
+                                                                <p>Hasta el momento no tienes pacientes en espera.</p>
+                                                          </td>
+                                                    </tr>
+                                              </ng-container>
+                                        </tbody>
+                                  </table>
+                            </div>
+                            <ng-container *ngIf="patientsOnHold.length > 0">
+                                  <ngb-pagination [collectionSize]="countRowsOnHold" [pageSize]="countRowsByPageOnHold" [(page)]="currentPageOnHold" (pageChange)="pageChangeOnHold($event)"></ngb-pagination>
+                            </ng-container>
+                      </div>
+                </div>
+          </ng-template>
+    </ngb-panel>
+    <ngb-panel title="Atendidos">
+          <ng-template ngbPanelContent>
+                <div class="row">
+                      <div class="col-md-12">
+                            <div class="table-responsive">
+                                  <table class="table table-hover">
+                                        <thead>
+                                              <tr>
+                                                    <th *ngIf="loadingAttended == true"><i class="fas fa-circle-notch fa-spin"></i></th>
+                                                    <th>Rut del Paciente</th>
+                                                    <th>Nombre del Paciente</th>
+                                                    <th>Fecha Médica</th>
+                                                    <th>Hora Médica</th>                                                    
+                                              </tr>
+                                        </thead>
+                                        <tbody>
+                                              <ng-container *ngIf="loadingAttended == false && patientsAttended.length > 0">
+                                                    <tr *ngFor="let patient of patientsAttended">
+                                                          <td>{{ patient.patientId.patientRun }}</td>
+                                                          <td>{{ patient.patientId.patientFullName }}</td>
+                                                          <td>{{ transformBillMedicalTime(patient.billMedicalTime) }}</td>
+                                                          <td>{{ patient.scheduleId.scheduleHour }}</td>
+                                                    </tr>
+                                              </ng-container>
+                                              <ng-container *ngIf="loadingAttended == false && patientsAttended.length == 0">
+                                                    <tr>
+                                                          <td colspan="7" style="text-align: center;">
+                                                                <p>Hasta el momento no tienes pacientes atentidos.</p>
+                                                          </td>
+                                                    </tr>
+                                              </ng-container>
+                                        </tbody>
+                                  </table>
+                            </div>
+                            <ng-container *ngIf="patientsAttended.length > 0">
+                                  <ngb-pagination [collectionSize]="countRowsAttended" [pageSize]="countRowsByPageAttended" [(page)]="currentPageAttended" (pageChange)="pageChangeAttended($event)"></ngb-pagination>
+                            </ng-container>
+                      </div>
+                </div>
+          </ng-template>
+    </ngb-panel>
+</ngb-accordion>
